@@ -1,19 +1,36 @@
-import { Button } from 'react-native';
+
 import React from 'react';
-import { StyleSheet, View, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // Import du hook
+import { StyleSheet, View, Image, TouchableOpacity, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; 
 
 const Start = () => {
-  const navigation = useNavigation(); // Utilisation du hook useNavigation
+  const navigation = useNavigation(); 
 
   return (
     <View style={styles.container}>
-      <Image source={require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/logo_coco.png')} style={styles.image} />
-      <Image source={require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/eco_image.png')} style={styles.image1} />
+      <TouchableOpacity style={styles.imageWrapper1}>
+        <Image source={require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/logo_coco.png')} style={styles.image1} />
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.imageWrapper2}>
+        <Image source={require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/eco_image.png')} style={styles.image2} />
+      </TouchableOpacity>
+      
+      <Text style={styles.text}>Une toute nouvelle poubelle pour une toute nouvelle édition !</Text>
+      
       <View style={styles.buttonContainer}>
-        <Button title="Je zap" onPress={() => navigation.navigate('Main')} /> 
-        <Button title="Suivant" onPress={() => navigation.navigate('Start2')} /> 
-        </View>
+        <TouchableOpacity onPress={() => navigation.navigate('Main')} style={styles.button}>
+          <Text style={styles.buttonText}>Je zap</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Start2')} style={styles.button}>
+          <Text style={styles.buttonText}>Suivant</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.paginationContainer}>
+        <View style={[styles.paginationDot, styles.activePaginationDot]} />
+        <View style={styles.paginationDot} />
+      </View>
     </View>
   );
 }
@@ -25,20 +42,68 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5E5CC',
   },
-  image: {
-    width: 200,
-    height: 200,
-    marginBottom: 20,
+  imageWrapper1: {
+    width: 220 / 1.5,
+    height: 200 / 1.5,
+    marginBottom: 60,
+  },
+  imageWrapper2: {
+    width: 380,
+    height: 320,
+    marginTop: 20,
+    marginBottom: 50,
   },
   image1: {
-    width: 300,
-    height: 200,
-    marginBottom: 20,
+    width: "100%",
+    height: "100%",
+  },
+  image2: {
+    width: "100%",
+    height: "100%",
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '80%',
+  },
+  button: {
+    backgroundColor: '#C15A5A',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20, 
+    marginHorizontal: 10,
+  },
+  buttonText: {
+    color: '#F5E5CC',
+    fontFamily: 'Lemon',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  text: {
+    fontSize: 20,
+    marginBottom: 60,
+    marginRight: 20,
+    marginLeft: 20,
+    textAlign: 'center',
+    color: '#C15A5A',
+    fontFamily: 'Lemon',
+    fontWeight: 'bold',
+  },
+  paginationContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  paginationDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: '#E5C4B5',
+    marginHorizontal: 5,
+  },
+  activePaginationDot: {
+    backgroundColor: '#C15A5A',
   },
 });
 
