@@ -7,7 +7,7 @@ const Portfolio = () => {
   return (
     <View style={styles.container}>
       <Image source={require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/logo_coco.png')} style={styles.image} />
-      <Image source={require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/eco_image.png')} style={styles.image} />
+      <Image source={require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/eco_image.png')} style={styles.image1} />
       <View style={styles.buttonContainer}>
         <Button title="Je zap" onPress={() => useNavigation.navigate('Home')} />
         <Button title="Suivant" onPress={() => console.log('Suivant button pressed')} />
@@ -21,12 +21,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#F5E5CC',
   },
-  image: {
-    width: 200,
+  image1: {
+    width: 300,
     height: 200,
     marginBottom: 20,
   },
+ 
   buttonContainer: {
     flexDirection: 'row',
   },

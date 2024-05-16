@@ -31,6 +31,9 @@ const App = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.profileContainer}>
+      <TouchableOpacity style={styles.profileWrapper2}>
+          <Image source={require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/logo_fire.png')} style={styles.profileImage2} />
+        </TouchableOpacity>
         <TouchableOpacity style={styles.profileWrapper}>
           <Image source={require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/profil.png')} style={styles.profileImage} />
         </TouchableOpacity>
@@ -58,7 +61,7 @@ const styles = StyleSheet.create({
   container: {
     paddingTop : 60,
     flex: 1,
-    backgroundColor: '#FDEDEC',
+    backgroundColor: '#F5E5CC',
   },
   title: {
     fontSize: 24,
@@ -92,19 +95,33 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   profileContainer: {
-    backgroundColor: '#FDEDEC',
-
+    backgroundColor: '#F5E5CC',
+    flexDirection: 'row',
   },
   profileWrapper: {
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     borderRadius: 50,
     overflow: 'hidden',
-    margin: 10,
+    margin: 15,
+    backgroundColor: '#F5E5CC',
+
   },
   profileImage: {
-    width: '100%',
-    height: '100%',
+    width: 40,
+    height: 40,
+  },
+  profileWrapper2: {
+    width: 160,
+    height: 60,
+    overflow: 'hidden',
+    margin: 10,
+    backgroundColor: '#F5E5CC',
+    marginRight: '35%',
+  },
+  profileImage2: {
+    width: 130,
+    height: 50,
   },
   imagelabel: {
     position: 'absolute',
