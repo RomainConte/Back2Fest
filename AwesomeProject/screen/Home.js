@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const App = () => {
-  // Les données pourraient être structurées comme suit
+  const navigation = useNavigation();
   const data = {
     days: [
       {
@@ -31,10 +32,10 @@ const App = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.profileContainer}>
-      <TouchableOpacity style={styles.profileWrapper2}>
+      <TouchableOpacity style={styles.profileWrapper2} >
           <Image source={require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/logo_fire.png')} style={styles.profileImage2} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.profileWrapper}>
+        <TouchableOpacity style={styles.profileWrapper} onPress={() => navigation.openDrawer()}>
           <Image source={require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/profil.png')} style={styles.profileImage} />
         </TouchableOpacity>
       </View>
