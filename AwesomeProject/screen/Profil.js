@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native'; // backicon temporaire
+import Icon from 'react-native-vector-icons/FontAwesome'; // backicon temporaire
 const Profil = () => {
+  const navigation = useNavigation();  // backicon temporaire
   const data = {
     profile: {
       name: 'Jeremi',
@@ -26,6 +28,16 @@ const Profil = () => {
 
   return (
     <ScrollView style={styles.container}>
+      {/* backicon temporaire */}
+      <View style={styles.header}>
+        <Icon
+          name="arrow-left"
+          size={24}
+          color="red"
+          style={styles.backIcon}
+          onPress={() => navigation.goBack()} 
+        />
+      </View>
       <View style={styles.profileContainer}>
         <TouchableOpacity style={styles.profileWrapper}>
           <Image source={data.profile.profilePicture} style={styles.profileImage} />
@@ -55,6 +67,11 @@ const Profil = () => {
 };
 
 const styles = StyleSheet.create({
+// backicon temporaire
+backIcon: {
+  padding: 10,
+},
+
   container: {
     paddingTop: 60,
     flex: 1,

@@ -15,13 +15,13 @@ const CustomDrawerContent = (props) => {
       <DrawerItem
         icon={({ color, size }) => <Feather name="user" color={color} size={size} />}
         label="Profil"
-        // onPress={() => {}}
+        onPress={() => props.navigation.navigate('Profil')}
         labelStyle={styles.label}
       />
       <DrawerItem
         icon={({ color, size }) => <FontAwesome5 name="coins" color={color} size={size} />}
         label="Mes points"
-        // onPress={() => {}}
+        onPress={() => props.navigation.navigate('Coco')}
         labelStyle={styles.label}
       />
       <DrawerItem

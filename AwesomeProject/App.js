@@ -1,7 +1,7 @@
 import { AppRegistry } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { Home, Portfolio, Setting, Start, Start2 } from './screen';
+import { Home, Portfolio, Setting, Start, Start2, Profil, Coco,} from './screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -60,6 +60,8 @@ function MainNavigator() {
       <Stack.Screen name="Start" component={Start} />
       <Stack.Screen name="Start2" component={Start2} />
       <Stack.Screen name="Main" component={DrawerNavigator} />
+      <Stack.Screen name="Profil" component={Profil} />
+      <Stack.Screen name="Coco" component={Coco} />
     </Stack.Navigator>
   );
 }
