@@ -17,6 +17,7 @@ const CustomDrawerContent = (props) => {
         label="Profil"
         // onPress={() => {}}
         labelStyle={styles.label}
+        onPress={() => props.navigation.navigate('Profil')}
       />
       <DrawerItem
         icon={({ color, size }) => <FontAwesome5 name="coins" color={color} size={size} />}
