@@ -1,7 +1,7 @@
 import { AppRegistry } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { Home, Portfolio, Setting, Start, Start2, Profil, Coco,} from './screen';
+import { Home, Portfolio, Setting, Start, Start2, Profil, Coco, Billet,} from './screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -12,6 +12,7 @@ import CustomDrawerContent from './component/CustomDrawerContent.js';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import 'react-native-gesture-handler';
 import { name as appName } from './app.json';
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -50,6 +51,16 @@ function MyTabs() {
           headerShown: false,
         }}
       />
+      <Tab.Screen
+        name="Billet"
+        component={Billet}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Entypo name="ticket" size={24} color="black" />
+          ),
+          headerShown: false,
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -62,6 +73,7 @@ function MainNavigator() {
       <Stack.Screen name="Main" component={DrawerNavigator} />
       <Stack.Screen name="Profil" component={Profil} />
       <Stack.Screen name="Coco" component={Coco} />
+      
     </Stack.Navigator>
   );
 }
