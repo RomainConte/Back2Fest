@@ -9,20 +9,20 @@ const App = () => {
       {
         day: 'En ce moment',
         images: [
-          { src: require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/josman.png'), label: 'Josman' },
-          { src: require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/8ruki.png'), label: '8ruki' },
-          { src: require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/Karris.png'), label: 'Karris' },
-          { src: require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/Nes.png'), label: 'Nes' },
-          { src: require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/La fève.png'), label: 'La fève' },
+          { src: require('../assets/josman.png'), label: 'Josman' },
+          { src: require('../assets/8ruki.png'), label: '8ruki' },
+          { src: require('../assets/Karris.png'), label: 'Karris' },
+          { src: require('../assets/Nes.png'), label: 'Nes' },
+          { src: require('../assets/La fève.png'), label: 'La fève' },
         ],
         
       },
       {
         day: 'À ne pas manquer',
         images: [
-          { src: require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/La fève.png'), label: 'Travis Scott' },
-          { src: require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/josman.png'), label: 'Label 17' },
-          { src: require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/josman.png'), label: 'Label 18' },
+          { src: require('../assets/La fève.png'), label: 'Travis Scott' },
+          { src: require('../assets/josman.png'), label: 'Label 17' },
+          { src: require('../assets/josman.png'), label: 'Label 18' },
         ],
       },
       // Répétez pour chaque jour
@@ -33,10 +33,10 @@ const App = () => {
     <ScrollView style={styles.container}>
       <View style={styles.profileContainer}>
       <TouchableOpacity style={styles.profileWrapper2} >
-          <Image source={require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/logo_fire.png')} style={styles.profileImage2} />
+          <Image source={require('../assets/logo_fire.png')} style={styles.profileImage2} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.profileWrapper} onPress={() => navigation.openDrawer()}>
-          <Image source={require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/profil.png')} style={styles.profileImage} />
+          <Image source={require('../assets/profil.png')} style={styles.profileImage} />
         </TouchableOpacity>
       </View>
         {data.days.map((day, index) => (

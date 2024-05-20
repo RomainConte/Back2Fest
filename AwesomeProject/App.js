@@ -1,18 +1,18 @@
 import { AppRegistry } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { Home, Portfolio, Setting, Start, Start2, Profil, Coco, Billet,} from './screen';
+import { Home, Programme, Setting, Start, Start2, Profil, Coco, Billet, Map, J1, J2 ,J3, J4  } from './screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
 import CustomDrawerContent from './component/CustomDrawerContent.js';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import 'react-native-gesture-handler';
 import { name as appName } from './app.json';
-
+import { Feather } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -26,27 +26,34 @@ function MyTabs() {
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => (
-            <MaterialIcons name="home-filled" size={24} color={focused ? '#E4B979' : 'black'} />
+            <View style={{}}>
+              <Ionicons name="home-outline" size={24} color={focused ? '#E4B979' : '#FAFAFA'} />
+            </View>
+          ),
+          tabBarLabel: 'Home',
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Programme"
+        component={Programme}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View style={{}}>
+              <Ionicons name="calendar-outline" size={24} color={focused ? '#E4B979' : '#FAFAFA'} />
+            </View>
           ),
           headerShown: false,
         }}
       />
       <Tab.Screen
-        name="Portfolio"
-        component={Portfolio}
+        name="Carte"
+        component={Map}
         options={{
           tabBarIcon: ({ focused }) => (
-            <Entypo name="image" size={24} color={focused ? '#E4B979' : 'black'} />
-          ),
-          headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name="Setting"
-        component={Setting}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <Feather name="settings" size={24} color={focused ? '#E4B979' : 'black'} />
+            <View style={{}}>
+              <Feather name="map-pin" size={24} color={focused ? '#E4B979' : '#FAFAFA'} />
+            </View>
           ),
           headerShown: false,
         }}
@@ -56,7 +63,9 @@ function MyTabs() {
         component={Billet}
         options={{
           tabBarIcon: ({ focused }) => (
-            <Entypo name="ticket" size={24} color="black" />
+            <View style={{}}>
+              <Entypo name="ticket" size={24} color={focused ? '#E4B979' : '#FAFAFA'} />
+            </View>
           ),
           headerShown: false,
         }}
@@ -73,7 +82,12 @@ function MainNavigator() {
       <Stack.Screen name="Main" component={DrawerNavigator} />
       <Stack.Screen name="Profil" component={Profil} />
       <Stack.Screen name="Coco" component={Coco} />
-      
+      <Stack.Screen name="J1" component={J1} />
+      <Stack.Screen name="J2" component={J2} />
+      <Stack.Screen name="J3" component={J3} />
+      <Stack.Screen name="J4" component={J4} />
+ 
+
     </Stack.Navigator>
   );
 }
@@ -102,7 +116,7 @@ const screenoption = {
     backgroundColor: '#C15A5A',
   },
   tabBarActiveTintColor: '#E4B979',
-  tabBarInactiveTintColor: 'gray',
+  tabBarInactiveTintColor: 'white',
   tabBarLabelStyle: {
     fontSize: 12,
     fontWeight: 'bold',

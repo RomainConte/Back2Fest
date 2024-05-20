@@ -8,8 +8,8 @@ const Start2 = () => {
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
-        <Image source={require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/logo_fire.png')} style={styles.logo} />
-        <Image source={require('C:/cours/Back2Fest/Back2Fest/AwesomeProject/assets/dancer.png')} style={styles.dancers} />
+        <Image source={require('../assets/logo_fire.png')} style={styles.logo} />
+        <Image source={require('../assets/dancer.png')} style={styles.dancers} />
       </View>
       <Text style={styles.description}>Le plus grand festival de rap en France</Text>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Main')}>
