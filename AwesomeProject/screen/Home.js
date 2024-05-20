@@ -25,7 +25,6 @@ const App = () => {
           { src: require('../assets/josman.png'), label: 'Label 18' },
         ],
       },
-      // Répétez pour chaque jour
     ],
   };
 
@@ -76,12 +75,12 @@ const styles = StyleSheet.create({
   dayTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginLeft: 10,
+    marginLeft: 22,
   },
   imageContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     padding: 10,
   },
   imageWrapper: {
@@ -98,6 +97,9 @@ const styles = StyleSheet.create({
   profileContainer: {
     backgroundColor: '#F5E5CC',
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+
   },
   profileWrapper: {
     width: 40,
