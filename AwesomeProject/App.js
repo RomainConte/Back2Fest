@@ -108,6 +108,7 @@ function MainNavigator() {
       <Stack.Screen name="J3" component={J3} />
       <Stack.Screen name="J4" component={J4} />
       <Stack.Screen name="Programme" component={Programme} />
+      <Stack.Screen name="register" component={register} />
 
     </Stack.Navigator>
   );

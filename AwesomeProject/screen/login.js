@@ -1,13 +1,14 @@
 // ./login.js
 
 import React, { useState } from "react";
-import { Image, Pressable, StyleSheet, TextInput, Text, View, ImageBackground, useWindowDimensions } from "react-native";
+import { Image, Pressable, StyleSheet, TextInput, Text, View, useWindowDimensions } from "react-native";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 
 
 // Assurez-vous que Firebase est initialisé
 import app from "../config/firebase";
+import register from "./register";
 
 const auth = getAuth(app);
 
@@ -45,126 +46,146 @@ function SignInScreen({ navigation }) {
   }
 
   return (
-   
+    
       <View style={responsiveStyles.container}>
-      
-        <Text style={responsiveStyles.title}>Connecte-toi à ton compte !</Text>
+        <Image source={require('../assets/logo noir sans fong.png')} style={{width: 300, height: 128, marginBottom:60, }}></Image>
+      <Text style={responsiveStyles.title}>CONNECTE-TOI</Text>
+    
 
-        <View style={responsiveStyles.form}>
-          <View style={responsiveStyles.inputWrapper}>
-            <View style={responsiveStyles.inputContainer}>
-              <Icon style={responsiveStyles.icon} name="email" size={18} color="gray" />
-              <TextInput
-                placeholder="Email"
-                value={value.email}
-                style={responsiveStyles.input}
-                onChangeText={(text) => setValue({ ...value, email: text })}
-              />
-            </View>
+      <View style={responsiveStyles.form}>
+        <View style={responsiveStyles.inputWrapper}>
 
-            <View style={responsiveStyles.inputContainer}>
-              <Icon style={responsiveStyles.icon} name="lock" size={18} color="gray" />
-              <TextInput
-                placeholder="Mot de passe"
-                style={responsiveStyles.input}
-                onChangeText={(text) => setValue({ ...value, password: text })}
-                secureTextEntry={!showPassword}
-              />
-              <Pressable onPress={() => setShowPassword(!showPassword)}>
-                <Icon name={showPassword ? "eye-off" : "eye"} size={18} color="gray" style={responsiveStyles.icon} />
-              </Pressable>
-            </View>
+
+        <Text style={responsiveStyles.ssti}>Email</Text>
+                  <View style={{ ...responsiveStyles.inputContainer, marginBottom:20, }}>
+            <Icon style={responsiveStyles.icon} name="email" size={18} color="#FAFAFA" />
+            <TextInput
+              placeholder="Email"
+              value={value.email}
+              style={responsiveStyles.input}
+              onChangeText={(text) => setValue({ ...value, email: text })}
+            />
           </View>
-          <Pressable style={responsiveStyles.button} onPress={signIn}>
-            <Text style={responsiveStyles.buttonText}>Connexion</Text>
-          </Pressable>
+
+        <Text style={responsiveStyles.ssti}>Mot de passe</Text>
+          <View style={{ ...responsiveStyles.inputContainer}}>
+            <Icon style={responsiveStyles.icon} name="lock" size={18} color="#FAFAFA" />
+            <TextInput
+              placeholder="Mot de passe"
+              style={responsiveStyles.input}
+              onChangeText={(text) => setValue({ ...value, password: text })}
+              secureTextEntry={!showPassword}
+            />
+            <Pressable onPress={() => setShowPassword(!showPassword)}>
+              <Icon name={showPassword ? "eye-off" : "eye"} size={18} color="#FAFAFA" style={responsiveStyles.icon1} />
+            </Pressable>
+          </View>
         </View>
+
+        <Pressable onPress={() => navigation.navigate("ForgotPassword")}>
+          <Text style={responsiveStyles.forgotPassword}>Mot de passe oublié ?</Text>
+        </Pressable>
+
+        <Pressable style={responsiveStyles.button} onPress={register}>
+          <Text style={responsiveStyles.buttonText}>SE CONNECTER</Text>
+        </Pressable>
+
+
         <Text style={responsiveStyles.bottomText}>
-          Pas de compte ?{" "}
-          <Text style={responsiveStyles.linkText} onPress={() => navigation.navigate("Sign Up")}>
-            Inscris toi ici
+          Pas encore de compte ?{" "}
+          <Text style={responsiveStyles.linkText} onPress={() => navigation.navigate("register")}>
+            CRÉER-TOI UN COMPTE
           </Text>
         </Text>
       </View>
-  
+    </View>
   );
 }
 
 export default SignInScreen;
 
 const createResponsiveStyles = (width, height) => StyleSheet.create({
-  background: {
-    width: "100%",
-    height: "100%",
-  },
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginHorizontal: width * 0.04,
-  },
-  logo: {
-    width: width * 0.6,
-    height: undefined,
-    aspectRatio: 1,
-    alignSelf: "center",
+    backgroundColor: "#FAF3DD",
+    paddingHorizontal: width * 0.04,
   },
   title: {
-    fontSize: width * 0.06,
+    fontSize: 24,
     fontWeight: "bold",
-    textAlign: "center",
-    color: "white",
-    marginBottom: height * 0.02,
+    color: "#121212",
+      marginBottom: height * 0.012,
   },
   form: {
     width: width * 0.8,
     marginVertical: height * 0.03,
   },
   inputWrapper: {
-    marginTop: height * 0.01,
     marginBottom: height * 0.02,
   },
   inputContainer: {
     flexDirection: "row",
-    justifyContent: "center",
     alignItems: "center",
     borderRadius: 15,
     paddingHorizontal: width * 0.02,
-    paddingVertical: height * 0.01,
-    backgroundColor: "#f3f3f3",
-    marginBottom: height * 0.02,
-    width: "100%",
+    paddingVertical: height * 0.015,
+    backgroundColor: "#C15A5A",
+   
   },
   icon: {
-    padding: width * 0.02,
+      paddingLeft: width * 0.015,
+    
+      
+    },
+  icon1: {
+      paddingRight: width * 0.02,
+      backgroundColor: "#C15A5A",
   },
   input: {
     flex: 1,
-    paddingTop: height * 0.01,
-    paddingRight: width * 0.02,
-    paddingBottom: height * 0.01,
-    paddingLeft: 0,
-    backgroundColor: "#f3f3f3",
-    color: "#424242",
+    color: "#FFFFFF",
+    paddingVertical: 0,
+    paddingHorizontal: width * 0.02,
+  },
+  forgotPassword: {
+    alignSelf: "flex-end",
+    color: "#121212",
+      marginBottom: height * 0.02,
+      marginTop: height * -0.015,
+    marginRight: 1,
   },
   button: {
-    backgroundColor: "#F72585",
+    backgroundColor: "#C15A5A",
     borderRadius: 25,
-    paddingVertical: height * 0.015,
-    paddingHorizontal: width * 0.1,
-    margin: height * 0.02,
+    paddingVertical: height * 0.012,
+    alignItems: "center",
+      marginVertical: height * 0.02,
+     marginBottom: height * 0.04,
+    width: "62%",
+    alignSelf: "center",
+    
   },
   buttonText: {
-    textAlign: "center",
-    color: "white",
+    color: "#FFFFFF",
     fontWeight: "bold",
     fontSize: width * 0.045,
   },
+
   bottomText: {
-    textAlign: "center",
-    color: "white",
+    color: "#121212",
+      textAlign: "center",
+    paddingTop: 0,
   },
   linkText: {
-    color: "#F72585",
+    color: "#D46A6A",
+    fontWeight: "bold",
+    },
+  
+  ssti: {
+    color: "#121212",
+      marginBottom: 10,
+    marginLeft: 13,
   },
 });
