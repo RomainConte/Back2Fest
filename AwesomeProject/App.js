@@ -13,6 +13,10 @@ import 'react-native-gesture-handler';
 import { name as appName } from './app.json';
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+// import { LogBox } from 'react-native';
+// LogBox.ignoreAllLogs(true);
+
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -86,7 +90,7 @@ function MainNavigator() {
       <Stack.Screen name="J2" component={J2} />
       <Stack.Screen name="J3" component={J3} />
       <Stack.Screen name="J4" component={J4} />
- 
+      <Stack.Screen name="Programme" component={Programme} />
 
     </Stack.Navigator>
   );
