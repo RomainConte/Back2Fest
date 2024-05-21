@@ -4,11 +4,11 @@ import React, { useState } from "react";
 import { Image, Pressable, StyleSheet, TextInput, Text, View, useWindowDimensions } from "react-native";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+import { useNavigation } from '@react-navigation/native';
 
 
 // Assurez-vous que Firebase est initialisé
 import app from "../config/firebase";
-import register from "./register";
 
 const auth = getAuth(app);
 
@@ -34,8 +34,8 @@ function SignInScreen({ navigation }) {
     }
 
     try {
-        await signInWithEmailAndPassword(auth, value.email, value.password);
-        navigation.navigate("Home");
+      await signInWithEmailAndPassword(auth, value.email, value.password);
+      navigation.navigate("Home");
     } catch (error) {
       setValue({
         ...value,
@@ -46,18 +46,14 @@ function SignInScreen({ navigation }) {
   }
 
   return (
-    
-      <View style={responsiveStyles.container}>
-        <Image source={require('../assets/logo noir sans fong.png')} style={{width: 300, height: 128, marginBottom:60, }}></Image>
+    <View style={responsiveStyles.container}>
+      <Image source={require('../assets/logo noir sans fong.png')} style={{width: 300, height: 128, marginBottom: 60}} />
       <Text style={responsiveStyles.title}>CONNECTE-TOI</Text>
-    
 
       <View style={responsiveStyles.form}>
         <View style={responsiveStyles.inputWrapper}>
-
-
-        <Text style={responsiveStyles.ssti}>Email</Text>
-                  <View style={{ ...responsiveStyles.inputContainer, marginBottom:20, }}>
+          <Text style={responsiveStyles.ssti}>Email</Text>
+          <View style={{ ...responsiveStyles.inputContainer, marginBottom: 20 }}>
             <Icon style={responsiveStyles.icon} name="email" size={18} color="#FAFAFA" />
             <TextInput
               placeholder="Email"
@@ -67,8 +63,8 @@ function SignInScreen({ navigation }) {
             />
           </View>
 
-        <Text style={responsiveStyles.ssti}>Mot de passe</Text>
-          <View style={{ ...responsiveStyles.inputContainer}}>
+          <Text style={responsiveStyles.ssti}>Mot de passe</Text>
+          <View style={{ ...responsiveStyles.inputContainer }}>
             <Icon style={responsiveStyles.icon} name="lock" size={18} color="#FAFAFA" />
             <TextInput
               placeholder="Mot de passe"
@@ -86,14 +82,13 @@ function SignInScreen({ navigation }) {
           <Text style={responsiveStyles.forgotPassword}>Mot de passe oublié ?</Text>
         </Pressable>
 
-        <Pressable style={responsiveStyles.button} onPress={register}>
+        <Pressable style={responsiveStyles.button} onPress={signIn}>
           <Text style={responsiveStyles.buttonText}>SE CONNECTER</Text>
         </Pressable>
 
-
         <Text style={responsiveStyles.bottomText}>
           Pas encore de compte ?{" "}
-          <Text style={responsiveStyles.linkText} onPress={() => navigation.navigate("register")}>
+          <Text style={responsiveStyles.linkText} onPress={() => navigation.navigate("Register")}>
             CRÉER-TOI UN COMPTE
           </Text>
         </Text>
@@ -116,7 +111,7 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     color: "#121212",
-      marginBottom: height * 0.012,
+    marginBottom: height * 0.012,
   },
   form: {
     width: width * 0.8,
@@ -132,16 +127,13 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     paddingHorizontal: width * 0.02,
     paddingVertical: height * 0.015,
     backgroundColor: "#C15A5A",
-   
   },
   icon: {
-      paddingLeft: width * 0.015,
-    
-      
-    },
+    paddingLeft: width * 0.015,
+  },
   icon1: {
-      paddingRight: width * 0.02,
-      backgroundColor: "#C15A5A",
+    paddingRight: width * 0.02,
+    backgroundColor: "#C15A5A",
   },
   input: {
     flex: 1,
@@ -152,8 +144,8 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
   forgotPassword: {
     alignSelf: "flex-end",
     color: "#121212",
-      marginBottom: height * 0.02,
-      marginTop: height * -0.015,
+    marginBottom: height * 0.02,
+    marginTop: height * -0.015,
     marginRight: 1,
   },
   button: {
@@ -161,31 +153,28 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     borderRadius: 25,
     paddingVertical: height * 0.012,
     alignItems: "center",
-      marginVertical: height * 0.02,
-     marginBottom: height * 0.04,
+    marginVertical: height * 0.02,
+    marginBottom: height * 0.04,
     width: "62%",
     alignSelf: "center",
-    
   },
   buttonText: {
     color: "#FFFFFF",
     fontWeight: "bold",
     fontSize: width * 0.045,
   },
-
   bottomText: {
     color: "#121212",
-      textAlign: "center",
+    textAlign: "center",
     paddingTop: 0,
   },
   linkText: {
     color: "#D46A6A",
     fontWeight: "bold",
-    },
-  
+  },
   ssti: {
     color: "#121212",
-      marginBottom: 10,
+    marginBottom: 10,
     marginLeft: 13,
   },
 });
