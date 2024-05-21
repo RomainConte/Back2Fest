@@ -27,7 +27,7 @@ const CustomDrawerContent = (props) => {
       <DrawerItem
         icon={({ color, size }) => <Feather name="settings" color={color} size={size} />}
         label="Paramètres"
-        // onPress={() => {}}
+        onPress={() => { 'setting' }}
         labelStyle={styles.label}
       />
       <DrawerItem
