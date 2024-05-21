@@ -1,7 +1,7 @@
 import { AppRegistry } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { Home, Programme, Setting, Start, Start2, Profil, Coco, Billet, Map, J1, J2 ,J3, J4  } from './screen';
+import { Home, Programme, Setting, Start, Start2, Profil, Coco, Billet, Map, J1, J2 ,J3, J4, login, register  } from './screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -13,6 +13,7 @@ import 'react-native-gesture-handler';
 import { name as appName } from './app.json';
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import "./config/firebase";
 // import { LogBox } from 'react-native';
 // LogBox.ignoreAllLogs(true);
 
@@ -38,6 +39,22 @@ function MyTabs() {
           headerShown: false,
         }}
       />
+
+ <Tab.Screen
+        name="login"
+        component={login}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View style={{}}>
+              <Ionicons name="home-outline" size={24} color={focused ? '#E4B979' : '#FAFAFA'} />
+            </View>
+          ),
+          tabBarLabel: 'login',
+          headerShown: false,
+        }}
+      />
+
+      
       <Tab.Screen
         name="Programme"
         component={Programme}

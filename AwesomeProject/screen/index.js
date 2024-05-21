@@ -11,6 +11,8 @@ import J1 from './J1'
 import J2 from './J2'
 import J3 from './J3'
 import J4 from './J4'
+import login from './login'
+import register from './register'
 
 
 export{
@@ -27,6 +29,8 @@ export{
     J2,
     J3,
     J4,
+    login,
+    register
    
 
 
