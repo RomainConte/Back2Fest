@@ -12,7 +12,7 @@ const Start2 = () => {
         <Image source={require('../assets/dancer.png')} style={styles.dancers} />
       </View>
       <Text style={styles.description}>Le plus grand festival de rap en France</Text>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Main')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
         <Text style={styles.buttonText}>C’est parti !</Text>
       </TouchableOpacity>
       <View style={styles.paginationContainer}>
