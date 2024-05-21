@@ -13,7 +13,7 @@ import J3 from './J3'
 import J4 from './J4'
 import login from './login'
 import register from './register'
-
+import artiste from './artiste'
 
 export{
     Programme, 
@@ -30,7 +30,8 @@ export{
     J3,
     J4,
     login,
-    register
+    register,
+    artiste,
    
 
 
