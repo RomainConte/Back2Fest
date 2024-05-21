@@ -40,7 +40,7 @@ function MyTabs() {
         }}
       />
 
- <Tab.Screen
+      {/* <Tab.Screen
         name="login"
         component={login}
         options={{
@@ -52,7 +52,7 @@ function MyTabs() {
           tabBarLabel: 'login',
           headerShown: false,
         }}
-      />
+      /> */}
 
       
       <Tab.Screen
@@ -100,6 +100,7 @@ function MainNavigator() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Start" component={Start} />
       <Stack.Screen name="Start2" component={Start2} />
+      <Stack.Screen name="Login" component={login} />
       <Stack.Screen name="Main" component={DrawerNavigator} />
       <Stack.Screen name="Profil" component={Profil} />
       <Stack.Screen name="Coco" component={Coco} />

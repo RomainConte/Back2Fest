@@ -19,7 +19,7 @@ const Start = () => {
       <Text style={styles.text}>Une toute nouvelle poubelle pour une toute nouvelle édition !</Text>
       
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate('Main')} style={styles.button}>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.button}>
           <Text style={styles.buttonText}>Je zap</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Start2')} style={styles.button}>
