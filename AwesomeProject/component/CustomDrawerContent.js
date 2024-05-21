@@ -33,7 +33,7 @@ const CustomDrawerContent = (props) => {
       <DrawerItem
         icon={({ color, size }) => <Feather name="check-circle" color={color} size={size} />}
         label="Completed"
-        // onPress={() => {}}
+        onPress={() => {'login'}}
         labelStyle={styles.label}
       />
       <DrawerItem

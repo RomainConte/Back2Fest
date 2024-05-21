@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "298482831843",
+    "firebase_url": "https://back2fest-dae2e-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "back2fest-dae2e",
+    "storage_bucket": "back2fest-dae2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298482831843:android:6468162d978cfe5fe3d0d6",
+        "android_client_info": {
+          "package_name": "com.eds.back2fest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWEy6_xHc3IAjg-tWeKnKp90IPCj4-3yI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
