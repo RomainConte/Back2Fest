@@ -89,7 +89,7 @@ function SignInScreen({ navigation }) {
 
         <Text style={responsiveStyles.bottomText}>
           Pas encore de compte ?{" "}
-          <Text style={responsiveStyles.linkText} onPress={() => navigation.navigate("Register")}>
+          <Text style={responsiveStyles.linkText} onPress={() => navigation.navigate("register")}>
             CRÉER-TOI UN COMPTE
           </Text>
         </Text>

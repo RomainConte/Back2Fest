@@ -11,7 +11,7 @@ import app from "../config/firebase";
 
 const auth = getAuth(app);
 
-function SignInScreen({ navigation }) {
+function Register({ navigation }) {
   const [value, setValue] = useState({
     email: "",
     password: "",
@@ -115,7 +115,7 @@ function SignInScreen({ navigation }) {
   );
 }
 
-export default RegisterScreen;
+export default Register;
 
 const createResponsiveStyles = (width, height) => StyleSheet.create({
   container: {
