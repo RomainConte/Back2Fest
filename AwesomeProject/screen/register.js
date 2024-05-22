@@ -35,7 +35,7 @@ function SignInScreen({ navigation }) {
 const register = async () => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, value.email, value.password);
-    navigation.navigate("Home");
+    navigation.navigate("Main");
     const user = userCredential.user;
     console.log("Utilisateur inscrit avec succès:", user);
     
