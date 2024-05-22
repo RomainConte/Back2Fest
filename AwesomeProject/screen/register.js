@@ -130,7 +130,7 @@ function SignInScreen({ navigation }) {
 
         <Text style={responsiveStyles.bottomText}>
           Déjà un compte ?{" "}
-          <Text style={responsiveStyles.linkText} onPress={() => navigation.navigate("login")}>
+          <Text style={responsiveStyles.linkText} onPress={() => navigation.navigate("Login")}>
             CONNECTE-TOI
           </Text>
         </Text>
