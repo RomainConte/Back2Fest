@@ -2,9 +2,10 @@
 
 import React, { useState } from "react";
 import { Image, Pressable, StyleSheet, TextInput, Text, View, ImageBackground, useWindowDimensions } from "react-native";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { FontAwesome } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
 
 // Assurez-vous que Firebase est initialisé
 import app from "../config/firebase";
@@ -14,38 +15,38 @@ import register from "./login";
 const auth = getAuth(app);
 
 function SignInScreen({ navigation }) {
-  const [value, setValue] = useState({
+    const [value, setValue] = useState({
+    name: "",
     email: "",
     password: "",
+     confirmPassword: "",
     error: "",
   });
 
     const [showPassword, setShowPassword] = useState(false);
-  
+  const [showPassword1, setShowPassword1] = useState(false);
   const { width, height } = useWindowDimensions();
   const responsiveStyles = createResponsiveStyles(width, height);
 
-  async function signIn() {
-    if (value.email === "" || value.password === "") {
-      setValue({
-        ...value,
-        error: "Email and password are mandatory.",
-      });
-      alert("Un email et un mot de passe sont requis.");
-      return;
-    }
 
-    try {
-        await signInWithEmailAndPassword(auth, value.email, value.password);
-        navigation.navigate("Home");
-    } catch (error) {
-      setValue({
-        ...value,
-        error: error.message,
-      });
-      alert("Email ou mot de passe incorrect(s).");
-    }
+  
+    
+    
+const register = async () => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, value.email, value.password);
+    navigation.navigate("Home");
+    const user = userCredential.user;
+    console.log("Utilisateur inscrit avec succès:", user);
+    
+  } catch (error) {
+    console.error("Erreur lors de l'inscription:", error);
+    setValue({ ...value, error: error.message });
   }
+};
+    
+    
+    
 
   return (
     
@@ -63,9 +64,9 @@ function SignInScreen({ navigation }) {
            <FontAwesome name="user" size={18} color="#FAFAFA" />
             <TextInput
               placeholder="Nom"
-              value={value.Nom}
+              value={value.name}
               style={responsiveStyles.input}
-              onChangeText={(text) => setValue({ ...value, email: text })}
+              onChangeText={(text) => setValue({ ...value, name: text })}
             />
                   </View>
                 
@@ -108,10 +109,10 @@ function SignInScreen({ navigation }) {
               placeholder="Confirme ton mot de passe"
               style={responsiveStyles.input}
               onChangeText={(text) => setValue({ ...value, password: text })}
-              secureTextEntry={!showPassword}
+              secureTextEntry={!showPassword1}
             />
-            <Pressable onPress={() => setShowPassword(!showPassword)}>
-              <Icon name={showPassword ? "eye-off" : "eye"} size={18} color="#FAFAFA" style={responsiveStyles.icon1} />
+            <Pressable onPress={() => setShowPassword1(!showPassword)}>
+              <Icon name={showPassword1 ? "eye-off" : "eye"} size={18} color="#FAFAFA" style={responsiveStyles.icon1} />
             </Pressable>
           </View>
         
@@ -130,7 +131,7 @@ function SignInScreen({ navigation }) {
 
         <Text style={responsiveStyles.bottomText}>
           Déjà un compte ?{" "}
-          <Text style={responsiveStyles.linkText} onPress={() => navigation.navigate("login")}>
+          <Text style={responsiveStyles.linkText} onPress={() => navigation.navigate("Login")}>
             CONNECTE-TOI
           </Text>
         </Text>
