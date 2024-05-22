@@ -1,129 +1,82 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // Import du hook de navigation
-import { Ionicons } from '@expo/vector-icons'; // Pour l'icône de retour
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const InfoPage = () => {
-  const navigation = useNavigation(); // Utilisation du hook useNavigation
+const App = () => {
+  const navigation = useNavigation();
 
   return (
-    <ScrollView>
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={24} color="#C15A5A" />
-        </TouchableOpacity>
-        <Text style={styles.headerText}>FireWave :</Text>
-      </View>
+    <ScrollView style={styles.container}>
+      <TouchableOpacity style={styles.backButton}>
+        <Text style={styles.backText}>←</Text>
+      </TouchableOpacity>
 
+      <Text style={styles.header}>FireWave :</Text>
       <View style={styles.section}>
-        <TouchableOpacity style={styles.listItem}>
-          <Text style={styles.listItemText}>FAQ</Text>
-          <Ionicons name="chevron-forward" size={20} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.listItem}>
-          <Text style={styles.listItemText}>Interdits/autorisés</Text>
-          <Ionicons name="chevron-forward" size={20} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.listItem}>
-          <Text style={styles.listItemText}>Contact</Text>
-          <Ionicons name="chevron-forward" size={20} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.listItem}>
-          <Text style={styles.listItemText}>Crédits</Text>
-          <Ionicons name="chevron-forward" size={20} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.listItem}>
-          <Text style={styles.listItemText}>Coco ©</Text>
-          <Ionicons name="chevron-forward" size={20} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.listItem}>
-          <Text style={styles.listItemText}>Boutique</Text>
-          <Ionicons name="chevron-forward" size={20} color="black" />
-        </TouchableOpacity>
+        <MenuItem title="FAQ" onPress={() => navigation.navigate('FaqPage')} />
+        <MenuItem title="Interdits/autorisés" onPress={() => navigation.navigate('FestivalRules')}/>
+        <MenuItem title="Crédits" onPress={() => navigation.navigate('Credits')} />
+        <MenuItem title="Modifier mes informations" onPress={() => navigation.navigate('EditProfileScreen')}/>
+        
       </View>
 
-      <Text style={styles.sectionHeader}>Infos pratiques :</Text>
-
+      <Text style={styles.header}>Infos pratiques :</Text>
       <View style={styles.section}>
-        <TouchableOpacity style={styles.listItem}>
-          <Text style={styles.listItemText}>Le staff</Text>
-          <Ionicons name="chevron-forward" size={20} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.listItem}>
-          <Text style={styles.listItemText}>Accès</Text>
-          <Ionicons name="chevron-forward" size={20} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.listItem}>
-          <Text style={styles.listItemText}>Camping</Text>
-          <Ionicons name="chevron-forward" size={20} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.listItem}>
-          <Text style={styles.listItemText}>Conditions d'utilisation</Text>
-          <Ionicons name="chevron-forward" size={20} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.listItem}>
-          <Text style={styles.listItemText}>Politique de confidentialité</Text>
-          <Ionicons name="chevron-forward" size={20} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.listItem}>
-          <Text style={styles.listItemText}>Cookies</Text>
-          <Ionicons name="chevron-forward" size={20} color="black" />
-        </TouchableOpacity>
+      
+        <MenuItem title="Acces"  onPress={() => navigation.navigate('Acces')} />
+        <MenuItem title="Camping" onPress={() => navigation.navigate('Acces')}/>
+        <MenuItem title="Conditions d'utilisation" onPress={() => navigation.navigate('TermsOfUse')} />
+        <MenuItem title="Politique de confidentialité" onPress={() => navigation.navigate('Poli')}/>
+        <MenuItem title="Cookies" onPress={() => navigation.navigate('Coockies')} />
       </View>
-    </View>
     </ScrollView>
   );
-}
+};
+
+const MenuItem = ({ title, onPress }) => {
+  return (
+    <TouchableOpacity style={styles.menuItem} onPress={onPress}>
+      <Text style={styles.menuText}>{title}</Text>
+    </TouchableOpacity>
+  );
+};
+
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5E5CC',
-    paddingHorizontal: 20,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 40,
-    marginBottom: 20,
+    backgroundColor: '#FAEBD7', 
   },
   backButton: {
-    marginRight: 10,
+    margin: 10,
   },
-  headerText: {
+  backText: {
     fontSize: 24,
-    color: '#C15A5A',
-    fontWeight: 'bold',
-    fontFamily: 'Lemon',
+    color: '#D2691E', 
+  },
+  header: {
+    fontSize: 24,
+    color: '#C15A5A', 
+    marginLeft: 20,
+    marginTop: 20,
   },
   section: {
-    backgroundColor: 'white',
+    marginVertical: 10,
+    marginHorizontal: 20,
+    backgroundColor: '#FFF',
     borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    marginBottom: 20,
+    padding: 10,
   },
-  sectionHeader: {
-    fontSize: 24,
-    color: '#C15A5A',
-    fontWeight: 'bold',
-    fontFamily: 'Lemon',
-    marginBottom: 10,
-  },
-  listItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  menuItem: {
     paddingVertical: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#EEE',
+    borderBottomColor: '#ddd',
   },
-  listItemText: {
+  menuText: {
     fontSize: 18,
-    fontFamily: 'Lemon',
-    color: 'black',
+    color: '#000',
   },
 });
 
-export default InfoPage;
+export default App;

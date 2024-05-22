@@ -1,7 +1,7 @@
 import { AppRegistry } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { Home, Programme, Setting, Start, Start2, Profil, Coco, Billet, Map, J1, J2 ,J3, J4  } from './screen';
+import { Home, Programme, Settings, EditProfileScreen, FestivalRules, Acces, Credits, Camping, FaqPage, Start, Start2, Profil, TermsOfUse, Coco, Billet, Coockies, Map, Poli, J1, J2 ,J3, J4  } from './screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -91,7 +91,16 @@ function MainNavigator() {
       <Stack.Screen name="J3" component={J3} />
       <Stack.Screen name="J4" component={J4} />
       <Stack.Screen name="Programme" component={Programme} />
-
+      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="FaqPage" component={FaqPage} />
+      <Stack.Screen name="Credits" component={Credits} />
+      <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
+      <Stack.Screen name="FestivalRules" component={FestivalRules} />
+      <Stack.Screen name="Acces" component={Acces} />
+      <Stack.Screen name="Camping" component={Camping} />
+      <Stack.Screen name="Poli" component={Poli} />
+      <Stack.Screen name="Coockies" component={Coockies} />
+      <Stack.Screen name="TermsOfUse" component={TermsOfUse} />
     </Stack.Navigator>
   );
 }
