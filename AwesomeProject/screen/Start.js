@@ -9,17 +9,18 @@ const Start = () => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.imageWrapper1}>
-        <Image source={require('/Users/nh/Desktop/uwuback/AwesomeProject/assets/logo_coco.png')} style={styles.image1} />
+        <Image source={require('../assets/logo_coco.png')} style={styles.image1} />
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.imageWrapper2}>
-        <Image source={require('/Users/nh/Desktop/uwuback/AwesomeProject/assets/eco_image.png')} style={styles.image2} />
+        <Image source={require('../assets/eco_image.png')} style={styles.image2} />
+
       </TouchableOpacity>
       
       <Text style={styles.text}>Une toute nouvelle poubelle pour une toute nouvelle édition !</Text>
       
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate('Main')} style={styles.button}>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.button}>
           <Text style={styles.buttonText}>Je zap</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Start2')} style={styles.button}>
