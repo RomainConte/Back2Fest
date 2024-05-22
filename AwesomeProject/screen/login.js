@@ -34,8 +34,9 @@ function SignInScreen({ navigation }) {
     }
 
     try {
-      await signInWithEmailAndPassword(auth, value.email, value.password);
-      navigation.navigate("Home");
+        await signInWithEmailAndPassword(auth, value.email, value.password);
+        navigation.navigate("Main");
+
     } catch (error) {
       setValue({
         ...value,

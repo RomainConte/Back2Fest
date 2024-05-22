@@ -1,59 +1,47 @@
 // ./register.js
 
 import React, { useState } from "react";
-import { Image, Pressable, StyleSheet, TextInput, Text, View, useWindowDimensions } from "react-native";
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { Image, Pressable, StyleSheet, TextInput, Text, View, ImageBackground, useWindowDimensions } from "react-native";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { FontAwesome } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 
 // Ensure Firebase is initialized
 import app from "../config/firebase";
 
 const auth = getAuth(app);
 
-function RegisterScreen({ navigation }) {
+function SignInScreen({ navigation }) {
   const [value, setValue] = useState({
-    name: "",
     email: "",
     password: "",
-    confirmPassword: "",
     error: "",
   });
 
-  const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+  
   const { width, height } = useWindowDimensions();
   const responsiveStyles = createResponsiveStyles(width, height);
 
-  async function register() {
-    if (value.name === "" || value.email === "" || value.password === "" || value.confirmPassword === "") {
+  async function signIn() {
+    if (value.email === "" || value.password === "") {
       setValue({
         ...value,
-        error: "All fields are mandatory.",
+        error: "Email and password are mandatory.",
       });
-      alert("Tous les champs sont obligatoires.");
-      return;
-    }
-
-    if (value.password !== value.confirmPassword) {
-      setValue({
-        ...value,
-        error: "Passwords do not match.",
-      });
-      alert("Les mots de passe ne correspondent pas.");
+      alert("Un email et un mot de passe sont requis.");
       return;
     }
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, value.email, value.password);
-      await updateProfile(userCredential.user, { displayName: value.name });
-      navigation.navigate("Home");
+        await signInWithEmailAndPassword(auth, value.email, value.password);
+        navigation.navigate("Home");
     } catch (error) {
       setValue({
         ...value,
         error: error.message,
       });
-      alert("Erreur lors de la création du compte.");
+      alert("Email ou mot de passe incorrect(s).");
     }
   }
 
@@ -102,11 +90,11 @@ function RegisterScreen({ navigation }) {
             <TextInput
               placeholder="Confirme ton mot de passe"
               style={responsiveStyles.input}
-              onChangeText={(text) => setValue({ ...value, confirmPassword: text })}
+              onChangeText={(text) => setValue({ ...value, password: text })}
               secureTextEntry={!showPassword}
             />
-            <Pressable onPress={() => setShowPassword(!showPassword)}>
-              <Icon name={showPassword ? "eye-off" : "eye"} size={18} color="#FAFAFA" style={responsiveStyles.icon1} />
+            <Pressable onPress={() => setShowPassword1(!showPassword)}>
+              <Icon name={showPassword1 ? "eye-off" : "eye"} size={18} color="#FAFAFA" style={responsiveStyles.icon1} />
             </Pressable>
           </View>
         </View>
