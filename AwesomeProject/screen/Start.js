@@ -14,6 +14,7 @@ const Start = () => {
 
       <TouchableOpacity style={styles.imageWrapper2}>
         <Image source={require('../assets/eco_image.png')} style={styles.image2} />
+
       </TouchableOpacity>
       
       <Text style={styles.text}>Une toute nouvelle poubelle pour une toute nouvelle édition !</Text>
