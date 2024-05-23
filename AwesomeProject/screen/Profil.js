@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { getAuth } from "firebase/auth";
 import { ref, onValue } from "firebase/database";
 import { database } from "../config/firebase";
- 
+import { useFonts } from 'expo-font'; 
 
 
 export default function J1() {
@@ -13,6 +13,10 @@ export default function J1() {
   const auth = getAuth();
   const user = auth.currentUser;
   const [userData, setUserData] = useState({}); // Utiliser l'état local pour stocker les données de l'utilisateur
+
+    const [fontsLoaded] = useFonts({
+    'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
+  });
 
   useEffect(() => {
     if (user) {
@@ -124,6 +128,7 @@ const styles = StyleSheet.create({
     marginTop: 90,
     marginBottom: 40,
     marginLeft: 22,
+    fontFamily: 'Lemon-Regular',
     color: '#121212',
   },
     title2: {
@@ -131,7 +136,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 90,
     marginBottom: 10,
-    marginLeft: 22,
+      marginLeft: 22,
+    fontFamily: 'Lemon-Regular',
     color: '#121212',
   },
 
@@ -170,6 +176,7 @@ profileName: {
   fontSize: 18,
   fontWeight: 'bold',
   color: '#000',
+  fontFamily: 'Lemon-Regular',
 },
   teamBadge: {
     backgroundColor: '#C15A5A',
@@ -184,6 +191,7 @@ profileName: {
   teamText: {
     color: '#fff',
     fontWeight: 'bold',
+    fontFamily: 'Lemon-Regular',
   },
   title: {
     fontSize: 22,
@@ -191,6 +199,7 @@ profileName: {
     color: '#000',
     textAlign: 'center',
     marginVertical: 20,
+    fontFamily: 'Lemon-Regular',
   },
   teamList: {
     flex: 1,
@@ -217,6 +226,7 @@ profileName: {
     fontWeight: 'bold',
     color: '#fff',
     marginRight: 10,
+    fontFamily: 'Lemon-Regular',
   },
   teamImage: {
     width: 50,
@@ -228,12 +238,14 @@ profileName: {
     flex: 1,
     fontSize: 16,
     color: '#fff',
+    fontFamily: 'Lemon-Regular',
   },
   teamPoints: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#fff',
     marginRight: 5,
+    fontFamily: 'Lemon-Regular',
   },
 
    

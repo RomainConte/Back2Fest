@@ -1,9 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // Import du hook de navigation
-
+import { useFonts } from 'expo-font';
 const Start2 = () => {
   const navigation = useNavigation(); // Utilisation du hook useNavigation
+    const [fontsLoaded] = useFonts({
+    'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
+  });
 
   return (
     <View style={styles.container}>
@@ -50,7 +53,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginVertical: 20,
-    fontFamily: 'Lemon',
+  fontFamily: 'Lemon-Regular',
   },
   button: {
     backgroundColor: '#C15A5A',
@@ -63,6 +66,7 @@ const styles = StyleSheet.create({
     color: '#F5E5CC',
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily: 'Lemon-Regular',
   },
   paginationContainer: {
     flexDirection: 'row',

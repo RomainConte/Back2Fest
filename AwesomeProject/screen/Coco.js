@@ -6,6 +6,7 @@ import QRCode from 'react-native-qrcode-svg';
 import { getAuth } from "firebase/auth";
 import { ref, onValue, update, push } from "firebase/database";
 import { database } from "../config/firebase";
+import { useFonts } from 'expo-font';
 
 const rewardImages = {
   'bière 25cl': require('../assets/biere.png'),
@@ -35,6 +36,10 @@ const Coco = () => {
   const [showPurchasedRewards, setShowPurchasedRewards] = useState(false);
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [selectedReward, setSelectedReward] = useState(null);
+
+  const [fontsLoaded] = useFonts({
+    'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
+  });
 
   const auth = getAuth();
   const user = auth.currentUser;
@@ -143,6 +148,10 @@ const Coco = () => {
     );
   };
 
+  if (!fontsLoaded) {
+    return null; // Optionally, render a loading component
+  }
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -153,61 +162,48 @@ const Coco = () => {
           style={styles.backIcon}
           onPress={() => navigation.goBack()}
         />
-        <Text style={{ marginTop:-15 ,color: '#121212', fontSize: 23, fontWeight: 'bold', alignSelf: 'center'}}>
+        <Text style={styles.headerTitle}>
           Mes points
         </Text>
       </View>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 10}}>
-        <Text style={{...styles.sectionTitle1, marginTop: 30, color: '#121212'}}>Mon QR Code</Text>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <TouchableOpacity onPress={() => setModalVisible(true)}>
-            <Text style={{
-              ...styles.sectionTitle4, marginRight: 22, marginTop: 30, color: '#121212'
-            }}>
-              Agrandir mon QRcode 
-              <Icon name="chevron-right" size={12} color="#121212" style={{ marginRight: 32, marginTop: 35 }} />
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={{alignSelf: "left", fontSize: 18, paddingBottom:10  }}>Mon QR Code</Text>
-              <View style={{
-                backgroundColor: '#C15A5A', paddingTop: 35, paddingBottom: 80, paddingLeft: 35, paddingRight:35,
-                borderRadius: 16,
-              }}>
-                <QRCode
-                  value={qrData}
-                  size={280}
-                  color="white"
-                  backgroundColor="transparent" 
-                  style={{ alignItems: 'center',}}
-                />
-                <Text style={{alignSelf: "center", fontSize: 17, paddingTop:15, color: "#E4B979"  }}>
-                  A scanner avant de jeter un déchet !
-                </Text>
-              </View>
-              <TouchableOpacity
-                style={{ ...styles.openButton, backgroundColor: "#C15A5A" }}
-                onPress={() => {
-                  setModalVisible(!modalVisible);
-                }}
-              >
-                <Text style={styles.textStyle}>Fermer</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
+      <View style={styles.qrHeader}>
+        <Text style={styles.sectionTitle1}>Mon QR Code</Text>
+        <TouchableOpacity onPress={() => setModalVisible(true)}>
+          <Text style={styles.sectionTitle4}>
+            Agrandir mon QRcode 
+            <Icon name="chevron-right" size={12} color="#121212" />
+          </Text>
+        </TouchableOpacity>
       </View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(!modalVisible)}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalTitle}>Mon QR Code</Text>
+            <View style={styles.qrModalContainer}>
+              <QRCode
+                value={qrData}
+                size={280}
+                color="white"
+                backgroundColor="transparent"
+              />
+              <Text style={styles.qrModalText}>
+                A scanner avant de jeter un déchet !
+              </Text>
+            </View>
+            <TouchableOpacity
+              style={styles.openButton}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Fermer</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
       <View style={styles.qrContainer}>
         <QRCode
           value={qrData}
@@ -217,21 +213,18 @@ const Coco = () => {
         />
       </View>
       <View style={styles.yellowContainer}></View>
-      <Text style={{ ...styles.sectionTitle1 }}>Nombre de déchets ramassés</Text>
+      <Text style={styles.sectionTitle1}>Nombre de déchets ramassés</Text>
       <View style={styles.coinContainer}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Text style={styles.coinText}>Vous avez jetés {userData.déchet || 0 } déchets à la poubelle</Text>
-        </View>
+        <Text style={styles.coinText}>Vous avez jetés {userData.déchet || 0} déchets à la poubelle</Text>
       </View>
       <View style={styles.statsContainer}>
-        <Text style={{ ...styles.sectionTitle3, marginLeft:2 }}>Mes coco'Z</Text>
+        <Text style={styles.sectionTitle3}>Mes coco'Z</Text>
         <View style={styles.statsBox}>
-          <Image source={require('../assets/cocopoint1.png')} style={{ marginRight: 5, width: 25, height: 25 }} />
-          <Text style={{ ...styles.statsNumber, borderRadius: 10 }}>{ userData.cocoZ || 0 }</Text>
+          <Image source={require('../assets/cocopoint1.png')} style={styles.cocoPointIcon} />
+          <Text style={styles.statsNumber}>{userData.cocoZ || 0}</Text>
           <Text style={styles.statsSubtitle}> Coco'Z</Text>
         </View>
       </View>
-
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.customButton, !showPurchasedRewards && styles.activeButton]}
@@ -246,7 +239,6 @@ const Coco = () => {
           <Text style={[styles.buttonText, showPurchasedRewards && styles.activeButtonText]}>Mes récompenses</Text>
         </TouchableOpacity>
       </View>
-
       {!showPurchasedRewards ? (
         <View>
           <View style={{ ...styles.rewardsContainer, backgroundColor: '#C15A5A', paddingLeft: 20, paddingRight: 20 }}>
@@ -280,8 +272,7 @@ const Coco = () => {
       ) : (
         renderPurchasedRewards()
       )}
-      <View style={{margin: 20 }}></View>
-
+      <View style={{ margin: 20 }}></View>
       <Modal
         animationType="slide"
         transparent={true}
@@ -322,6 +313,20 @@ const styles = StyleSheet.create({
     top: 20,
     marginTop: 20,
   },
+  headerTitle: {
+    marginTop: -15,
+    color: '#121212',
+    fontSize: 23,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    fontFamily: 'Lemon-Regular',
+  },
+  qrHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingBottom: 10,
+  },
   qrContainer: {
     alignItems: 'center',
     backgroundColor: '#C15A5A',
@@ -337,7 +342,6 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowRadius: 10,
-
   },
   yellowContainer: {
     backgroundColor: '#E4B979',
@@ -358,24 +362,29 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#121212',
     marginBottom: 10,
-    marginLeft: 22
+    marginLeft: 22,
+    fontFamily: 'Lemon-Regular',
   },
   sectionTitle2: {
     fontSize: 18,
     color: '#FAFAFA',
     marginBottom: 10,
-    marginLeft: 22
+    marginLeft: 22,
+    fontFamily: 'Lemon-Regular',
   },
   sectionTitle3: {
     fontSize: 17,
     color: '#121212',
-    marginLeft: 20,
     paddingBottom: 10,
-    marginLeft: 22
+    marginLeft: 22,
+    fontFamily: 'Lemon-Regular',
   },
   sectionTitle4: {
     color: '#121212',
     paddingTop: 3,
+    marginRight: 22,
+    marginTop: 30,
+    fontFamily: 'Lemon-Regular',
   },
   qrCodeText: {
     marginTop: 6,
@@ -390,12 +399,12 @@ const styles = StyleSheet.create({
     padding: 13,
     borderRadius: 10,
     paddingLeft: 24,
-    marginTop: -0,
     marginBottom: 17,
   },
   coinText: {
     fontSize: 18,
     color: '#FAFAFA',
+    fontFamily: 'Lemon-Regular',
   },
   statsContainer: {
     alignItems: 'left',
@@ -408,6 +417,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#121212',
     paddingBottom: 10,
+    fontFamily: 'Lemon-Regular',
   },
   statsBox: {
     flexDirection: 'row',
@@ -423,16 +433,23 @@ const styles = StyleSheet.create({
     elevation: 5,
     width: '100%',
   },
+  cocoPointIcon: {
+    marginRight: 5,
+    width: 25,
+    height: 25,
+  },
   statsNumber: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#FAFAFA',
     padding: 2,
+    fontFamily: 'Lemon-Regular',
   },
   statsSubtitle: {
     marginLeft: 2,
     fontSize: 18,
     color: '#FAFAFA',
+    fontFamily: 'Lemon-Regular',
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -454,6 +471,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
+    fontFamily: 'Lemon-Regular',
   },
   activeButtonText: {
     color: '#FAFAFA',
@@ -472,6 +490,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#FAFAFA',
     marginBottom: 10,
+    fontFamily: 'Lemon-Regular',
   },
   rewardItems: {
     flexDirection: 'row',
@@ -492,7 +511,7 @@ const styles = StyleSheet.create({
   rewardImage: {
     width: 90,
     height: 90,
-    resizeMode: "contain",
+    resizeMode: 'contain',
   },
   lockedReward: {
     width: 140,
@@ -527,9 +546,9 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   purchasedRewardImage: {
- width: 90,
+    width: 90,
     height: 90,
-    resizeMode: "contain",
+    resizeMode: 'contain',
   },
   rewardText: {
     position: 'absolute',
@@ -538,36 +557,37 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#121212',
     textAlign: 'center',
+    fontFamily: 'Lemon-Regular',
   },
   rewardCode: {
     fontSize: 14,
     color: '#888',
     textAlign: 'center',
+    fontFamily: 'Lemon-Regular',
   },
   centeredView: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
     alignItems: 'center',
   },
   modalView: {
-    backgroundColor: "#F5E5CB",
-    height: "100%",
-    width: "100%",
-    paddingTop: "35%",
+    backgroundColor: '#F5E5CB',
+    height: '100%',
+    width: '100%',
+    paddingTop: '35%',
     padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
+    alignItems: 'center',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
   },
   openButton: {
-    backgroundColor: "#C15A5A",
+    backgroundColor: '#C15A5A',
     borderRadius: 20,
     padding: 10,
     elevation: 2,
@@ -578,36 +598,38 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center"
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontFamily: 'Lemon-Regular',
   },
   overlayView: {
     margin: 20,
-    backgroundColor: "#F5E5CB",
+    backgroundColor: '#F5E5CB',
     borderRadius: 20,
     padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
+    alignItems: 'center',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
   },
   overlayText: {
     fontSize: 30,
     marginBottom: 15,
-    textAlign: "center"
+    textAlign: 'center',
+    fontFamily: 'Lemon-Regular',
   },
-   overlayText1: {
+  overlayText1: {
     fontSize: 20,
     marginBottom: 15,
-    textAlign: "center"
+    textAlign: 'center',
+    fontFamily: 'Lemon-Regular',
   },
 });
 
 export default Coco;
-

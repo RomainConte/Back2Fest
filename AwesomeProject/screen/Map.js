@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity, Modal, } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
 import { useNavigation } from '@react-navigation/native';
-
+import { useFonts } from 'expo-font';
 const MapScreen = () => {
     const navigation = useNavigation();
-    const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  
+    const [fontsLoaded] = useFonts({
+    'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
+  });
 
+  
   return (
     <ScrollView style={styles.container}>
   
@@ -71,6 +76,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     textAlign: 'center',
     color: '#121212',
+    fontFamily: 'Lemon-Regular',
   },
   mapImage: {
     width: '100%',
@@ -84,6 +90,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginBottom: 10,
     marginLeft: 22,
+    fontFamily: 'Lemon-Regular',
     color: '#121212',
   },
   legendContainer: {
@@ -113,7 +120,8 @@ const styles = StyleSheet.create({
   },
   legendText: {
     fontSize: 16,
-      color: '#FFF',
+    color: '#FFF',
+      fontFamily: 'Lemon-Regular',
     
     },
   

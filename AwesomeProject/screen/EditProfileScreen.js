@@ -1,10 +1,9 @@
-// ./EditProfileScreen.js
-
 import React, { useState } from "react";
 import { Image, Pressable, StyleSheet, TextInput, Text, View, useWindowDimensions } from "react-native";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
 
 function EditProfileScreen() {
   const [value, setValue] = useState({
@@ -15,6 +14,10 @@ function EditProfileScreen() {
     newPassword: "",
     confirmNewPassword: "",
     error: "",
+  });
+
+  const [fontsLoaded] = useFonts({
+    'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -42,6 +45,10 @@ function EditProfileScreen() {
     }
 
     alert("Profil mis à jour avec succès.");
+  }
+
+  if (!fontsLoaded) {
+    return null; // Optionally, render a loading component
   }
 
   return (
@@ -163,6 +170,7 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     color: "#121212",
     flex: 1,
     textAlign: "center",
+    fontFamily: 'Lemon-Regular',
   },
   form: {
     width: width * 0.8,
@@ -191,6 +199,7 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     color: "#FFFFFF",
     paddingVertical: 0,
     paddingHorizontal: width * 0.02,
+    fontFamily: 'Lemon-Regular',
   },
   button: {
     backgroundColor: "#C15A5A",
@@ -205,16 +214,19 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     color: "#FFFFFF",
     fontWeight: "bold",
     fontSize: width * 0.045,
+    fontFamily: 'Lemon-Regular',
   },
   ssti: {
     color: "#121212",
     marginBottom: 10,
     marginLeft: 13,
+    fontFamily: 'Lemon-Regular',
   },
   ssti1: {
     color: "#121212",
     marginTop: height * 0.02,
     marginBottom: 10,
     marginLeft: 13,
+    fontFamily: 'Lemon-Regular',
   },
 });

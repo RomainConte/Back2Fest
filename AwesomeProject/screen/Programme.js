@@ -2,10 +2,14 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import { useFonts } from 'expo-font';
 const Programme = () => {
   const [selectedDay, setSelectedDay] = useState('J1');
   const navigation = useNavigation();
+
+    const [fontsLoaded] = useFonts({
+    'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
+  });
 
   const dayData = {
     J1: [
@@ -114,6 +118,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginLeft: 22,
     color: '#121212',
+    fontFamily: 'Lemon-Regular',
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -131,6 +136,7 @@ const styles = StyleSheet.create({
   },
   dayButtonText: {
     fontSize: 16,
+    fontFamily: 'Lemon-Regular',
     color: '#FAFAFA',
   },
   artistsContainer: {
@@ -157,6 +163,7 @@ const styles = StyleSheet.create({
   timeText: {
     fontSize: 13,
     color: '#121212',
+    fontFamily: 'Lemon-Regular',
   },
   verticalLine: {
     height: 25,
@@ -177,10 +184,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#121212',
+    fontFamily: 'Lemon-Regular',
   },
   artistDetails: {
     fontSize: 14,
     color: '#555',
+    fontFamily: 'Lemon-Regular',
   },
 });
 

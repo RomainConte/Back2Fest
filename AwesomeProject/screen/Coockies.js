@@ -2,9 +2,14 @@ import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
 
 const Coockies = () => {
   const navigation = useNavigation();
+
+    const [fontsLoaded] = useFonts({
+    'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
+  });
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -58,6 +63,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
+    
   },
   backIcon: {
     padding: 10,
@@ -67,20 +73,24 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#E06B6B',
     marginLeft: 10,
+    fontFamily: 'Lemon-Regular',
   },
   description: {
     fontSize: 18,
     marginBottom: 25,
+    fontFamily: 'Lemon-Regular',
   },
   subHeader: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
     marginTop: 20,
+    fontFamily: 'Lemon-Regular',
   },
   item: {
     fontSize: 18,
     marginBottom: 15,
+    fontFamily: 'Lemon-Regular',
   },
 });
 

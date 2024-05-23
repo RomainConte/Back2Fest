@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 
-import { Home, Programme, Setting, Start, Start2, Profil, Coco, Billet, Map, J1, J2 ,J3, J4, login, register, artiste,  EditProfileScreen, FestivalRules, Acces, Credits, Camping, FaqPag, TermsOfUse, Coockies,  Poli,  } from './screen';
+import { Home, Programme, Settings, Start, Start2, Profil, Coco, Billet, Map, J1, J2 ,J3, J4, login, register, artiste,  EditProfileScreen, FestivalRules, Acces, Credits, Camping, FaqPage, TermsOfUse, Coockies,  Poli,  } from './screen';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -42,21 +42,6 @@ function MyTabs() {
           headerShown: false,
         }}
       />
-
-      {/* <Tab.Screen
-        name="login"
-        component={login}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <View style={{}}>
-              <Ionicons name="home-outline" size={24} color={focused ? '#E4B979' : '#FAFAFA'} />
-            </View>
-          ),
-          tabBarLabel: 'login',
-          headerShown: false,
-        }}
-      /> */}
-
       
       <Tab.Screen
         name="Programme"
@@ -106,14 +91,13 @@ function MainNavigator() {
       <Stack.Screen name="Login" component={login} />
       <Stack.Screen name="Main" component={DrawerNavigator} />
       <Stack.Screen name="Profil" component={Profil} />
-      <Stack.Screen name="Setting" component={Setting} />
+      <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="Coco" component={Coco} />
     
       <Stack.Screen name="Programme" component={Programme} />
 
       <Stack.Screen name="register" component={register} />
       <Stack.Screen name="artiste" component={artiste} />
-           <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="FaqPage" component={FaqPage} />
       <Stack.Screen name="Credits" component={Credits} />
       <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
