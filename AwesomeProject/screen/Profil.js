@@ -50,14 +50,14 @@ export default function J1() {
     style={styles.profileImage}
   />
   <View style={styles.profileInfo}>
-            <Text style={styles.profileName}>{ userData.prenom || "prenom" }</Text>
+            <Text style={styles.profileName}>{ userData.nom || "prenom" }</Text>
             <View style={{ position: 'absolute', left:-40, top: 13, }}>
               <Image source={require('../assets/mdi_pencil2.png')} style={{ width: 25, height: 25 }} />
               </View>
   </View>
         </View>
          <View style={styles.teamBadge}>
-      <Text style={styles.teamText}>TEAM: ROUGE</Text>
+      <Text style={styles.teamText}>TEAM:{ userData.team}</Text>
     </View>
 
       <Text style={styles.title2}>Classement équipe :</Text>

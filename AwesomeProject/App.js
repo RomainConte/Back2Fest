@@ -2,6 +2,7 @@ import { AppRegistry } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
+
 import { Home, Programme, Setting, Start, Start2, Profil, Coco, Billet, Map, J1, J2 ,J3, J4, login, register, artiste,  EditProfileScreen, FestivalRules, Acces, Credits, Camping, FaqPag, TermsOfUse, Coockies,  Poli,  } from './screen';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -107,10 +108,7 @@ function MainNavigator() {
       <Stack.Screen name="Profil" component={Profil} />
       <Stack.Screen name="Setting" component={Setting} />
       <Stack.Screen name="Coco" component={Coco} />
-      <Stack.Screen name="J1" component={J1} />
-      <Stack.Screen name="J2" component={J2} />
-      <Stack.Screen name="J3" component={J3} />
-      <Stack.Screen name="J4" component={J4} />
+    
       <Stack.Screen name="Programme" component={Programme} />
 
       <Stack.Screen name="register" component={register} />
