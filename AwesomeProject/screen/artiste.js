@@ -5,12 +5,18 @@ import { ref, onValue } from 'firebase/database';
 import { database } from '../config/firebase.js';
 import { Ionicons } from '@expo/vector-icons'; // Pour l'icône de retour
 import { useNavigation } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
+
 
 const Artiste = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const { artistIndex } = route.params;
   const [artist, setArtist] = useState(null);
+
+    const [fontsLoaded] = useFonts({
+    'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
+  });
 
   useEffect(() => {
     const artistRef = ref(database, `Artiste/${artistIndex}`);
@@ -111,6 +117,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 60,
     marginTop: 10,
+    fontFamily: 'Lemon-Regular',
   },
   bioContainer: {
     backgroundColor: '#FAFAFA',
@@ -123,6 +130,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#333',
     marginBottom: 10,
+    fontFamily: 'Lemon-Regular',
   },
   detailsCard: {
     backgroundColor: '#FAFAFA',
@@ -144,6 +152,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: '#121212',
+    fontFamily: 'Lemon-Regular',
   },
   verticalLine: {
     height: 2,
@@ -169,16 +178,19 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#555',
     fontStyle: 'italic',
+    fontFamily: 'Lemon-Regular',
   },
   artistDay: {
     fontSize: 14,
     color: '#555',
     fontStyle: 'italic',
+    fontFamily: 'Lemon-Regular',
   },
   artistName1: {
     fontSize: 17,
     color: '#121212',
     fontWeight: 'bold',
+    fontFamily: 'Lemon-Regular',
   },
   textcenter: {
     textAlign: 'center',
@@ -186,6 +198,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#121212',
     marginTop: 100,
+    fontFamily: 'Lemon-Regular',
   },
 });
 

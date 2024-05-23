@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-
+import { useFonts } from 'expo-font';
 const FaqPage = () => {
   const navigation = useNavigation();
   const [expanded, setExpanded] = useState({});
@@ -13,6 +13,10 @@ const FaqPage = () => {
       [index]: !prev[index],
     }));
   };
+
+    const [fontsLoaded] = useFonts({
+    'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
+  });
 
   const faqData = [
     {
@@ -97,7 +101,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#C15A5A',
     fontWeight: 'bold',
-    fontFamily: 'Lemon',
+    fontFamily: 'Lemon-Regular',
   },
   content: {
     paddingTop: 20,
@@ -117,11 +121,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#1C1C1C',
     fontWeight: 'bold',
+    fontFamily: 'Lemon-Regular',
   },
   answerText: {
     marginTop: 10,
     fontSize: 16,
     color: '#333',
+    fontFamily: 'Lemon-Regular',
   },
 });
 

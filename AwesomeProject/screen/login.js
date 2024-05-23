@@ -1,14 +1,10 @@
-// ./login.js
-
 import React, { useState } from "react";
 import { Image, Pressable, StyleSheet, TextInput, Text, View, useWindowDimensions } from "react-native";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { useNavigation } from '@react-navigation/native';
-
-
-// Assurez-vous que Firebase est initialisé
-import app from "../config/firebase";
+import { useFonts } from 'expo-font';
+import app from "../config/firebase"; // Ensure Firebase is initialized
 
 const auth = getAuth(app);
 
@@ -34,9 +30,8 @@ function SignInScreen({ navigation }) {
     }
 
     try {
-        await signInWithEmailAndPassword(auth, value.email, value.password);
-        navigation.navigate("Main");
-
+      await signInWithEmailAndPassword(auth, value.email, value.password);
+      navigation.navigate("Main");
     } catch (error) {
       setValue({
         ...value,
@@ -46,9 +41,17 @@ function SignInScreen({ navigation }) {
     }
   }
 
+  const [fontsLoaded] = useFonts({
+    'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return null; // Optionally, render a loading component
+  }
+
   return (
     <View style={responsiveStyles.container}>
-      <Image source={require('../assets/logo noir sans fong.png')} style={{width: 300, height: 128, marginBottom: 60}} />
+      <Image source={require('../assets/logo noir sans fong.png')} style={{ width: 300, height: 128, marginBottom: 60 }} />
       <Text style={responsiveStyles.title}>CONNECTE-TOI</Text>
 
       <View style={responsiveStyles.form}>
@@ -113,6 +116,7 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     fontWeight: "bold",
     color: "#121212",
     marginBottom: height * 0.012,
+    fontFamily: 'Lemon-Regular',
   },
   form: {
     width: width * 0.8,
@@ -141,6 +145,7 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     color: "#FFFFFF",
     paddingVertical: 0,
     paddingHorizontal: width * 0.02,
+    fontFamily: 'Lemon-Regular',
   },
   forgotPassword: {
     alignSelf: "flex-end",
@@ -148,6 +153,7 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     marginBottom: height * 0.02,
     marginTop: height * -0.015,
     marginRight: 1,
+    fontFamily: 'Lemon-Regular',
   },
   button: {
     backgroundColor: "#C15A5A",
@@ -163,19 +169,23 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     color: "#FFFFFF",
     fontWeight: "bold",
     fontSize: width * 0.045,
+    fontFamily: 'Lemon-Regular',
   },
   bottomText: {
     color: "#121212",
     textAlign: "center",
     paddingTop: 0,
+    fontFamily: 'Lemon-Regular',
   },
   linkText: {
     color: "#D46A6A",
     fontWeight: "bold",
+    fontFamily: 'Lemon-Regular',
   },
   ssti: {
     color: "#121212",
     marginBottom: 10,
     marginLeft: 13,
+    fontFamily: 'Lemon-Regular',
   },
 });

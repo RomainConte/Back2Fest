@@ -1,9 +1,12 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import { useFonts } from 'expo-font';
 const App = () => {
   const navigation = useNavigation();
+    const [fontsLoaded] = useFonts({
+    'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
+  });
 
   return (
     <ScrollView style={styles.container}>
@@ -54,12 +57,14 @@ const styles = StyleSheet.create({
   backText: {
     fontSize: 24,
     color: '#D2691E', 
+    fontFamily: 'Lemon-Regular',
   },
   header: {
     fontSize: 24,
     color: '#C15A5A', 
     marginLeft: 20,
     marginTop: 20,
+    fontFamily: 'Lemon-Regular',
   },
   section: {
     marginVertical: 10,
@@ -76,6 +81,7 @@ const styles = StyleSheet.create({
   menuText: {
     fontSize: 18,
     color: '#000',
+    fontFamily: 'Lemon-Regular',
   },
 });
 

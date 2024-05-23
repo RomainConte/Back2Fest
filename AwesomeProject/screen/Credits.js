@@ -2,24 +2,33 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import { useFonts } from 'expo-font';
 
 const partners = [
-  { name: 'CocaCola', src: require('/Users/nh/Desktop/uwuback/AwesomeProject/assets/Coca-Cola_logo 1.png') },
-  { name: 'BlaBlaCar', src: require('/Users/nh/Desktop/uwuback/AwesomeProject/assets/BlaBlaCar-Logo 1.png') },
-  { name: 'SNCF', src: require('/Users/nh/Desktop/uwuback/AwesomeProject/assets/Logo_SNCF_2011 1.png') },
-  { name: 'RedBull', src: require('/Users/nh/Desktop/uwuback/AwesomeProject/assets/Logo-Red-Bull 1.png') },
-  { name: 'Kronenbourg', src: require('/Users/nh/Desktop/uwuback/AwesomeProject/assets/Logo-kronenbourg-fb 1.png') },
-  { name: 'Biarritz', src: require('/Users/nh/Desktop/uwuback/AwesomeProject/assets/logo-2 1.png') },
-  { name: 'Brets', src: require('/Users/nh/Desktop/uwuback/AwesomeProject/assets/logo_brets-300x162 1.png') },
-  { name: 'EDF', src: require('/Users/nh/Desktop/uwuback/AwesomeProject/assets/image 17.png') },
-  { name: 'Celio', src: require('/Users/nh/Desktop/uwuback/AwesomeProject/assets/image 18.png') },
-  { name: 'Cochonou', src: require('/Users/nh/Desktop/uwuback/AwesomeProject/assets/image 21.png') },
-  { name: 'Bounty', src: require('/Users/nh/Desktop/uwuback/AwesomeProject/assets/image 20.png') },
-  { name: 'Orange', src: require('/Users/nh/Desktop/uwuback/AwesomeProject/assets/logo-orange 1.png') },
+  { name: 'CocaCola', src: require('../assets/Coca-Cola_logo 1.png') },
+  { name: 'BlaBlaCar', src: require('../assets/BlaBlaCar-Logo 1.png') },
+  { name: 'SNCF', src: require('../assets/Logo_SNCF_2011 1.png') },
+  { name: 'RedBull', src: require('../assets/Logo-Red-Bull 1.png') },
+  { name: 'Kronenbourg', src: require('../assets/Logo-kronenbourg-fb 1.png') },
+  { name: 'Biarritz', src: require('../assets/logo-2 1.png') },
+  { name: 'Brets', src: require('../assets/logo_brets-300x162 1.png') },
+  { name: 'EDF', src: require('../assets/image 17.png') },
+  { name: 'Celio', src: require('../assets/image 18.png') },
+  { name: 'Cochonou', src: require('../assets/image 21.png') },
+  { name: 'Bounty', src: require('../assets/image 20.png') },
+  { name: 'Orange', src: require('../assets/logo-orange 1.png') },
 ];
 
 const Credits = () => {
   const navigation = useNavigation();
+  
+  const [fontsLoaded] = useFonts({
+    'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return null; // Optionally, render a loading component
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -62,6 +71,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     flex: 1,
     textAlign: 'center',
+    fontFamily: 'Lemon-Regular',
   },
   subHeader: {
     fontSize: 18,
@@ -69,6 +79,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 10,
     fontWeight: 'bold',
+    fontFamily: 'Lemon-Regular',
   },
   partnersContainer: {
     flexDirection: 'row',

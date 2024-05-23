@@ -5,13 +5,16 @@ import { ref, set, get } from "firebase/database";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { FontAwesome } from '@expo/vector-icons';
 import { database } from "../config/firebase";
-
-// Ensure Firebase is initialized
-import app from "../config/firebase";
+import { useFonts } from 'expo-font';
+import app from "../config/firebase"; // Ensure Firebase is initialized
 
 const auth = getAuth(app);
 
 function Register({ navigation }) {
+  const [fontsLoaded] = useFonts({
+    'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
+  });
+
   const [value, setValue] = useState({
     name: "",
     email: "",
@@ -84,6 +87,10 @@ function Register({ navigation }) {
       });
       alert("Une erreur s'est produite lors de la création du compte.");
     }
+  }
+
+  if (!fontsLoaded) {
+    return null; // Optionally, render a loading component
   }
 
   return (
@@ -171,6 +178,7 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     fontWeight: "bold",
     color: "#121212",
     marginBottom: height * 0.012,
+    fontFamily: 'Lemon-Regular',
   },
   form: {
     width: width * 0.8,
@@ -199,13 +207,16 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     color: "#FFFFFF",
     paddingVertical: 0,
     paddingHorizontal: width * 0.02,
+    fontFamily: 'Lemon-Regular',
   },
   forgotPassword: {
     alignSelf: "flex-end",
     color: "#121212",
     marginBottom: height * 0.02,
     marginTop: height * -0.013,
-    marginRight: 20,
+    marginRight: 10,
+    fontFamily: 'Lemon-Regular',
+    fontSize: 10,
   },
   button: {
     backgroundColor: "#C15A5A",
@@ -222,24 +233,30 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     color: "#FFFFFF",
     fontWeight: "bold",
     fontSize: width * 0.045,
+    fontFamily: 'Lemon-Regular',
   },
   bottomText: {
     color: "#121212",
     textAlign: "center",
+    fontFamily: 'Lemon-Regular',
   },
   linkText: {
     color: "#D46A6A",
+    fontFamily: 'Lemon-Regular',
     fontWeight: "bold",
   },
   ssti: {
     color: "#121212",
     marginBottom: 10,
     marginLeft: 13,
+    
+    fontFamily: 'Lemon-Regular',
   },
   ssti1: {
     color: "#121212",
     marginTop: height * 0.02,
     marginBottom: 10,
     marginLeft: 13,
+    fontFamily: 'Lemon-Regular',
   },
 });

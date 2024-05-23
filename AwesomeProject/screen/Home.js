@@ -1,9 +1,17 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
 
 const App = () => {
   const navigation = useNavigation();
+
+    const [fontsLoaded] = useFonts({
+    'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
+  });
+
+
+
   const data = {
     days: [
       {
@@ -20,9 +28,9 @@ const App = () => {
       {
         day: 'À ne pas manquer',
         images: [
-          { src: require('../assets/La fève.png'), label: 'Travis Scott' },
-          { src: require('../assets/josman.png'), label: 'Label 17' },
-          { src: require('../assets/josman.png'), label: 'Label 18' },
+          { src: require('../assets/La-feve-epicmag 2.png'),},
+          { src: require('../assets/Rectangle 725.png'),},
+          { src: require('../assets/NAPS.png'),},
         ],
       },
     ],
@@ -68,6 +76,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 20,
     paddingLeft: 10,
+    fontFamily: 'Lemon-Regular',
   },
   dayContainer: {
     marginBottom: 20,
@@ -76,6 +85,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginLeft: 22,
+    fontFamily: 'Lemon-Regular',
   },
   imageContainer: {
     flexDirection: 'row',
@@ -134,7 +144,7 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 5,
     textAlign: 'right',
-    fontFamily: 'Knewave-Regular',
+    fontFamily: 'Lemon-Regular',
     fontWeight: 'bold',
     fontSize: 30,
   },
