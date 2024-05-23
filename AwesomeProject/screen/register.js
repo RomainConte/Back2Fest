@@ -1,10 +1,10 @@
-// ./register.js
-
-import React, { useState } from "react";
-import { Image, Pressable, StyleSheet, TextInput, Text, View, ImageBackground, useWindowDimensions } from "react-native";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import React, { useState, useEffect } from "react";
+import { Image, Pressable, StyleSheet, TextInput, Text, View, useWindowDimensions } from "react-native";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { ref, set, get } from "firebase/database";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { FontAwesome } from '@expo/vector-icons';
+import { database } from "../config/firebase";
 
 // Ensure Firebase is initialized
 import app from "../config/firebase";
@@ -13,35 +13,76 @@ const auth = getAuth(app);
 
 function Register({ navigation }) {
   const [value, setValue] = useState({
+    name: "",
     email: "",
     password: "",
+    confirmPassword: "",
     error: "",
   });
 
-    const [showPassword, setShowPassword] = useState(false);
-  
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword1, setShowPassword1] = useState(false);
+
   const { width, height } = useWindowDimensions();
   const responsiveStyles = createResponsiveStyles(width, height);
 
-  async function signIn() {
-    if (value.email === "" || value.password === "") {
+  const teams = ["ROUGE", "BLEU", "VERT"];
+
+  async function getTeamCounts() {
+    const counts = {};
+    for (const team of teams) {
+      const teamRef = ref(database, `teams/${team}/count`);
+      const snapshot = await get(teamRef);
+      counts[team] = snapshot.exists() ? snapshot.val() : 0;
+    }
+    return counts;
+  }
+
+  async function assignTeam() {
+    const counts = await getTeamCounts();
+    let minCount = Math.min(...Object.values(counts));
+    let team = teams.find(t => counts[t] === minCount);
+    return team;
+  }
+
+  async function registerUser() {
+    if (value.email === "" || value.password === "" || value.name === "") {
       setValue({
         ...value,
-        error: "Email and password are mandatory.",
+        error: "Name, email, and password are mandatory.",
       });
-      alert("Un email et un mot de passe sont requis.");
+      alert("Un nom, un email et un mot de passe sont requis.");
+      return;
+    }
+
+    if (value.password !== value.confirmPassword) {
+      setValue({
+        ...value,
+        error: "Passwords do not match.",
+      });
+      alert("Les mots de passe ne correspondent pas.");
       return;
     }
 
     try {
-        await signInWithEmailAndPassword(auth, value.email, value.password);
-        navigation.navigate("Home");
+      const userCredential = await createUserWithEmailAndPassword(auth, value.email, value.password);
+      const user = userCredential.user;
+      const team = await assignTeam();
+      await set(ref(database, `users/${user.uid}`), {
+        nom: value.name,
+        email: value.email,
+        cocoZ: 0,
+        déchet: 0,
+        team: team
+      });
+      await set(ref(database, `teams/${team}/count`), (await get(ref(database, `teams/${team}/count`))).val() + 1);
+      navigation.navigate("Main");
     } catch (error) {
       setValue({
         ...value,
         error: error.message,
       });
-      alert("Email ou mot de passe incorrect(s).");
+      alert("Une erreur s'est produite lors de la création du compte.");
     }
   }
 
@@ -90,10 +131,10 @@ function Register({ navigation }) {
             <TextInput
               placeholder="Confirme ton mot de passe"
               style={responsiveStyles.input}
-              onChangeText={(text) => setValue({ ...value, password: text })}
-              secureTextEntry={!showPassword}
+              onChangeText={(text) => setValue({ ...value, confirmPassword: text })}
+              secureTextEntry={!showPassword1}
             />
-            <Pressable onPress={() => setShowPassword1(!showPassword)}>
+            <Pressable onPress={() => setShowPassword1(!showPassword1)}>
               <Icon name={showPassword1 ? "eye-off" : "eye"} size={18} color="#FAFAFA" style={responsiveStyles.icon1} />
             </Pressable>
           </View>
@@ -101,7 +142,7 @@ function Register({ navigation }) {
         <Pressable onPress={() => navigation.navigate("ForgotPassword")}>
           <Text style={responsiveStyles.forgotPassword}>En vous enregistrant, vous confirmez votre acceptation de nos conditions d’utilisation, de notre politique de confidentialité et des cookies</Text>
         </Pressable>
-        <Pressable style={responsiveStyles.button} onPress={register}>
+        <Pressable style={responsiveStyles.button} onPress={registerUser}>
           <Text style={responsiveStyles.buttonText}>Créer mon compte</Text>
         </Pressable>
         <Text style={responsiveStyles.bottomText}>
@@ -194,10 +235,10 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     color: "#121212",
     marginBottom: 10,
     marginLeft: 13,
-    },
-   ssti1: {
-       color: "#121212",
-       marginTop: height * 0.02,
+  },
+  ssti1: {
+    color: "#121212",
+    marginTop: height * 0.02,
     marginBottom: 10,
     marginLeft: 13,
   },
