@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity, Modal } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const MapScreen = () => {
   const navigation = useNavigation();
@@ -47,7 +47,7 @@ const MapScreen = () => {
         {renderLegendItem(require('../assets/bus.png'), 'Bus')}
         {renderLegendItem(require('../assets/parking.png'), 'Parkings')}
       </View>
-      <View style={{ height: 50 }} />
+      <View style={{ height: hp('6%') }} />
     </ScrollView>
   );
 };
@@ -67,66 +67,66 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5E5CC',
   },
   title: {
-    fontSize: 23,
+    fontSize: wp('6%'),
     fontWeight: 'bold',
-    marginTop: 50,
-    marginBottom: 40,
+    marginTop: hp('6%'),
+    marginBottom: hp('5%'),
     textAlign: 'center',
     color: '#121212',
     fontFamily: 'Lemon-Regular',
   },
   mapImage: {
     width: '100%',
-    height: 380,
+    height: hp('50%'),
     resizeMode: 'contain',
-    borderRadius: 35,
+    borderRadius: wp('9%'),
   },
   legendTitle: {
-    fontSize: 20,
+    fontSize: wp('5%'),
     fontWeight: 'bold',
-    marginTop: 40,
-    marginBottom: 10,
-    marginLeft: 22,
+    marginTop: hp('5%'),
+    marginBottom: hp('1.25%'),
+    marginLeft: wp('5.5%'),
     fontFamily: 'Lemon-Regular',
     color: '#121212',
   },
   legendContainer: {
     backgroundColor: '#C15A5A',
-    borderRadius: 18,
-    padding: 15,
-    marginHorizontal: 22,
+    borderRadius: wp('4.5%'),
+    padding: wp('4%'),
+    marginHorizontal: wp('5.5%'),
     shadowColor: '#000',
     shadowOpacity: 0.2,
-    shadowRadius: 8,
-    shadowOffset: { width: 7, height: 7 },
+    shadowRadius: wp('2%'),
+    shadowOffset: { width: wp('1.75%'), height: wp('1.75%') },
     elevation: 5,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    marginBottom: 65,
+    marginBottom: hp('8.125%'),
   },
   legendItem: {
     width: '48%',
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#E4B979',
-    borderRadius: 10,
-    padding: 10,
-    marginVertical: 5,
+    borderRadius: wp('2.5%'),
+    padding: wp('2.5%'),
+    marginVertical: hp('0.625%'),
     shadowColor: '#000',
     shadowOpacity: 0.2,
-    shadowRadius: 5,
-    shadowOffset: { width: 3, height: 3 },
+    shadowRadius: wp('1.25%'),
+    shadowOffset: { width: wp('0.75%'), height: wp('0.75%') },
     elevation: 3,
   },
   legendImage: {
-    width: 40,
-    height: 40,
-    marginRight: 10,
+    width: wp('10%'),
+    height: wp('10%'),
+    marginRight: wp('2.5%'),
     resizeMode: 'contain',
   },
   legendText: {
-    fontSize: 12,
+    fontSize: wp('3.5%'),
     color: '#FFF',
     fontFamily: 'Lemon-Regular',
     flexShrink: 1,
