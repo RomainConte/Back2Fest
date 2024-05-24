@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator, Modal, Image, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator, Modal, Image } from 'react-native';
 import SvgQRCode from 'react-native-qrcode-svg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
@@ -8,7 +8,6 @@ import { ref, get, set, update } from 'firebase/database';
 import { database } from '../config/firebase';
 import { useFonts } from 'expo-font';
 import QRCode from 'react-native-qrcode-svg';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const TicketPage = () => {
   const navigation = useNavigation();
@@ -98,7 +97,7 @@ const TicketPage = () => {
         <Text style={styles.title1}>Mon ticket</Text>
         {userData && (
           <>
-            {/* Vos éléments conditionnels */}
+           
           </>
         )}
         <Text style={styles.qrCodeLabel}>Mon ticket</Text>
@@ -106,16 +105,18 @@ const TicketPage = () => {
           <View style={styles.qrContainer}>
             <QRCode
               value={"cocoZ"}
-              size={wp('35%')}
+              size={140}
               color="white"
               backgroundColor="transparent"
             />
             <Text style={{ ...styles.ticketDetail, marginTop:20 }}>Prénom : {userData.nom}</Text>
             <Text style={styles.ticketDetail}>Nombre de jours : {userData.days}</Text>
             <Text style={styles.ticketDetail}>Camping : {userData.camping ? 'Oui' : 'Non'}</Text>
+            
           </View>
+          
         </TouchableOpacity>
-
+         
         <Modal
           animationType="slide"
           transparent={true}
@@ -127,21 +128,25 @@ const TicketPage = () => {
             <View style={styles.modalContent}>
               <QRCode
                 value={"cocoZ"}
-                size={wp('70%')}
+                size={300}
                 color="black"
                 backgroundColor="white"
               />
-              <Text style={{ ...styles.ticketDetail2, marginTop:20 }}>Prénom : {userData.nom}</Text>
-              <Text style={styles.ticketDetail2}>Nombre de jours : {userData.days}</Text>
-              <Text style={styles.ticketDetail2}>Camping : {userData.camping ? 'Oui' : 'Non'}</Text>
+
+               <Text style={{ ...styles.ticketDetail2, marginTop:20 }}>Prénom : {userData.nom}</Text>
+            <Text style={styles.ticketDetail2}>Nombre de jours : {userData.days}</Text>
+            <Text style={styles.ticketDetail2}>Camping : {userData.camping ? 'Oui' : 'Non'}</Text>
+              
+             
               <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.closeButton}>
                 <Text style={styles.closeButtonText}>Fermer</Text>
               </TouchableOpacity>
             </View>
+            
           </View>
         </Modal>
         <View style={styles.yellowContainer}></View>
-        <Image source={require('../assets/ticket1.png')} style={{ marginLeft:10, marginTop: 40, width: wp('100%'), height: hp('15%'),  transform: [{ rotate: '-20deg' }] }} />
+        <Image source={require('../assets/ticket1.png')} style={{ marginLeft:10, marginTop: 40, width: 400, height: 125,  transform: [{ rotate: '-20deg' }] }} />
       </View>
     );
   }
@@ -229,7 +234,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5E5CC',
-    paddingTop: hp('7%'),
+    paddingTop: 60,
   },
   loadingContainer: {
     flex: 1,
@@ -240,24 +245,24 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: hp('7%'),
-    marginBottom: hp('2%'),
+    marginTop: 60,
+    marginBottom: 20,
   },
   backButton: {
-    paddingTop: hp('2%'),
-    marginRight: wp('2.5%'),
-    marginLeft: wp('3.75%'),
+    paddingTop: 20,
+    marginRight: 10,
+    marginLeft: 15,
   },
   switchContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginVertical: hp('2.5%'),
+    marginVertical: 20,
   },
   switchButton: {
     backgroundColor: '#E0E0E0',
     borderRadius: 20,
-    paddingVertical: hp('1.25%'),
-    paddingHorizontal: wp('5%'),
+    paddingVertical: 10,
+    paddingHorizontal: 20,
   },
   switchButtonActive: {
     backgroundColor: '#C15A5A',
@@ -276,17 +281,17 @@ const styles = StyleSheet.create({
     color: '#A0A0A0',
   },
   ticketContainer: {
-    paddingHorizontal: wp('5%'),
+    paddingHorizontal: 20,
   },
    yellowContainer: {
     backgroundColor: '#E4B979',
-    marginLeft: wp('5%'),
-    marginRight: wp('5%'),
-    marginBottom: hp('5%'),
-    paddingLeft: wp('5%'),
-    paddingRight: wp('5%'),
-    paddingTop: hp('2.5%'),
-    paddingBottom: hp('0.75%'),
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 40,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 20,
+    paddingBottom: 6,
     borderBottomLeftRadius: 18,
     borderBottomRightRadius: 18,
     shadowColor: '#000',
@@ -296,79 +301,81 @@ const styles = StyleSheet.create({
   ticketCard: {
     backgroundColor: '#C15A5A',
     borderRadius: 26,
-    paddingVertical: hp('2.5%'),
+    paddingVertical: 20,
     paddingBottom: 0,
-    marginBottom: hp('5%'),
+    marginBottom: 40,
     alignItems: 'center',
-    height: hp('22.5%'),
+    height: 180,
   },
   hidden: {
     display: 'none',
   },
  title1: {
-    fontSize: wp('5.75%'),
+    fontSize: 23,
     fontWeight: 'bold',
-    marginTop: hp('-1.25%'),
-    marginBottom: hp('5%'),
+    marginTop: -10,
+    marginBottom: 40,
     textAlign: 'center',
     color: '#121212',
     fontFamily: 'Lemon-Regular',
   },
   sectionTitle1: {
-     marginTop: hp('2.5%'),
-    fontSize: wp('4.5%'),
+     marginTop: 20,
+    fontSize: 18,
     color: '#121212',
-    marginLeft: wp('6.5%'),
+    marginLeft: 26,
     fontFamily: 'Lemon-Regular',
-    paddingBottom: hp('2.5%'),
+    paddingBottom: 20,
+
   },
+
   ticketPrice: {
-    fontSize: wp('7%'),
+    fontSize: 28,
     fontWeight: 'bold',
     color: '#FAFAFA',
-    marginBottom: hp('1.25%'),
+    marginBottom: 10,
     fontFamily: 'Lemon-Regular',
   },
   ticketDays: {
-    fontSize: wp('3.75%'),
+    fontSize: 15,
     color: '#FAFAFA',
-    marginBottom: hp('2.5%'),
+    marginBottom: 20,
     fontFamily: 'Lemon-Regular',
   },
   ticketButton: {
     backgroundColor: '#E4B979',
     borderBottomRightRadius: 26,
     borderBottomLeftRadius: 26,
-    paddingBottom: hp('2.5%'),
-    paddingTop: hp('1.875%'),
-    paddingHorizontal: wp('5%'),
+    paddingBottom: 20,
+    paddingTop: 15,
+    paddingHorizontal: 20,
     width: '100%',
     alignItems: 'center',
   },
   ticketButtonText: {
     color: '#FAFAFA',
     fontWeight: 'bold',
-    fontSize: wp('4.5%'),
+    fontSize: 18,
     fontFamily: 'Lemon-Regular',
   },
   title: {
-    fontSize: wp('9%'),
+    fontSize: 36,
     fontWeight: 'bold',
     color: '#D46C63',
-    marginBottom: hp('2.5%'),
+    marginBottom: 20,
     fontFamily: 'Lemon-Regular',
   },
   label: {
-    fontSize: wp('4.5%'),
+    fontSize: 18,
     color: '#555',
-    marginBottom: hp('1.25%'),
+    marginBottom: 10,
     fontFamily: 'Lemon-Regular',
   },
   qrCodeContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: hp('2.5%'),
-    padding: wp('5%'),
+    marginTop: 20,
+    padding: 20,
     backgroundColor: '#FFF',
     borderRadius: 10,
     shadowColor: '#000',
@@ -379,10 +386,10 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#D46C63',
-    paddingVertical: hp('1.5%'),
-    paddingHorizontal: wp('8%'),
+    paddingVertical: 12,
+    paddingHorizontal: 32,
     borderRadius: 25,
-    marginTop: hp('2.5%'),
+    marginTop: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
@@ -390,65 +397,67 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   buttonText: {
-    fontSize: wp('4.5%'),
+    fontSize: 18,
     color: '#FFF',
     fontWeight: 'bold',
     textAlign: 'center',
     fontFamily: 'Lemon-Regular',
   },
   header1: {
-    paddingTop: hp('1.25%'),
+    paddingTop: 10,
   },
   backIcon: {
-    paddingBottom: hp('1.25%'),
-    top: hp('2.5%'),
-    marginTop: hp('2.5%'),
+    paddingBottom: 10,
+    top: 20,
+    marginTop: 20,
   },
   headerTitle: {
-    marginTop: hp('-1.875%'),
-    marginBottom: hp('3.125%'),
+    marginTop: -15,
+    marginBottom: 25,
     color: '#121212',
-    fontSize: wp('5.75%'),
+    fontSize: 23,
     fontWeight: 'bold',
     alignSelf: 'center',
     fontFamily: 'Lemon-Regular',
   },
   ticketDetail: {
-    fontSize: wp('3.75%'),
+
+    fontSize: 15,
     color: '#FAFAFA',
     fontFamily: 'Lemon-Regular',
-    marginBottom: hp('1.875%'),
-    marginHorizontal: wp('5%'),
+    marginBottom: 15,
+    marginHorizontal: 20,
   },
    ticketDetail2: {
-    fontSize: wp('3.75%'),
+    fontSize: 15,
     color: '#121212',
     fontFamily: 'Lemon-Regular',
-    marginBottom: hp('1.875%'),
-    marginHorizontal: wp('5%'),
+    marginBottom: 15,
+    marginHorizontal: 20,
   },
   qrCodeLabel: {
-    fontSize: wp('4.5%'),
+    fontSize: 18,
     color: '#121212',
     fontFamily: 'Lemon-Regular',
-    marginBottom: hp('1.25%'),
-    marginTop: hp('5%'),
-    marginHorizontal: wp('5%'),
+    marginBottom: 10,
+    marginTop: 40,
+    marginHorizontal: 20,
   },
   pack: {
     backgroundColor: '#F5D7B8',
-    height: hp('25%'),
+    height: 200,
   },
+
    qrContainer: {
     alignItems: 'center',
     backgroundColor: '#C15A5A',
-    marginLeft: wp('5%'),
-    marginRight: wp('5%'),
-    marginTop: hp('-1.25%'),
-    paddingLeft: wp('5%'),
-    paddingRight: wp('5%'),
-    paddingTop: hp('2.5%'),
-    paddingBottom: hp('2.5%'),
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: -10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 20,
+    paddingBottom: 20,
     borderTopLeftRadius: 18,
     borderTopRightRadius: 18,
     shadowColor: '#000',
@@ -463,19 +472,19 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: 'white',
-    padding: wp('5%'),
+    padding: 20,
     alignItems: 'center',
     borderRadius: 10,
   },
   closeButton: {
-    marginTop: hp('2.5%'),
+    marginTop: 20,
     backgroundColor: '#D46C63',
-    paddingVertical: hp('1.5%'),
-    paddingHorizontal: wp('8%'),
+    paddingVertical: 12,
+    paddingHorizontal: 32,
     borderRadius: 25,
   },
   closeButtonText: {
-    fontSize: wp('4.5%'),
+    fontSize: 18,
     color: '#FFF',
     fontWeight: 'bold',
     textAlign: 'center',
@@ -484,3 +493,5 @@ const styles = StyleSheet.create({
 });
 
 export default TicketPage;
+
+
