@@ -100,18 +100,18 @@ function EditProfileScreen() {
         <ActivityIndicator size="large" color="#C15A5A" />
       ) : (
         <>
-       <View style={styles.header1}>
-        <Icon
-          name="arrow-left"
-          size={24}
-          color="#C15A5A"
-          style={styles.backIcon}
-          onPress={() => navigation.goBack()}
-        />
-        <Text style={styles.headerTitle}>
-          Modifier le profil
-        </Text>
-      </View>
+          <View style={styles.header1}>
+            <FontAwesome
+              name="arrow-left"
+              size={24}
+              color="#C15A5A"
+              style={styles.backIcon}
+              onPress={() => navigation.goBack()}
+            />
+            <Text style={styles.headerTitle}>
+              Modifier le profil
+            </Text>
+          </View>
           <View style={responsiveStyles.form}>
             <View style={responsiveStyles.inputWrapper}>
               <Text style={responsiveStyles.ssti}>Nom</Text>
@@ -143,7 +143,7 @@ function EditProfileScreen() {
                   style={responsiveStyles.input}
                   onChangeText={(text) => setValue({ ...value, currentPassword: text })}
                   secureTextEntry={!showPassword}
-                  value={value.currentPassword} // Added value prop
+                  value={value.currentPassword}
                 />
                 <Pressable onPress={() => setShowPassword(!showPassword)}>
                   <Icon name={showPassword ? "eye-off" : "eye"} size={18} color="#FAFAFA" style={responsiveStyles.icon1} />
@@ -157,7 +157,7 @@ function EditProfileScreen() {
                   style={responsiveStyles.input}
                   onChangeText={(text) => setValue({ ...value, newPassword: text })}
                   secureTextEntry={!showPassword1}
-                  value={value.newPassword} // Added value prop
+                  value={value.newPassword}
                 />
                 <Pressable onPress={() => setShowPassword1(!showPassword1)}>
                   <Icon name={showPassword1 ? "eye-off" : "eye"} size={18} color="#FAFAFA" style={responsiveStyles.icon1} />
@@ -171,7 +171,7 @@ function EditProfileScreen() {
                   style={responsiveStyles.input}
                   onChangeText={(text) => setValue({ ...value, confirmNewPassword: text })}
                   secureTextEntry={!showPassword2}
-                  value={value.confirmNewPassword} // Added value prop
+                  value={value.confirmNewPassword}
                 />
                 <Pressable onPress={() => setShowPassword2(!showPassword2)}>
                   <Icon  name={showPassword2 ? "eye-off" : "eye"} size={18} color="#FAFAFA" style={responsiveStyles.icon1} />
@@ -257,17 +257,17 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
 
 
 const styles = StyleSheet.create({
-
-   header1: {
-    paddingTop: 10,
+  header1: {
+    paddingTop: 30,
   },
   backIcon: {
     paddingBottom: 10,
-    top: 20,
+    top: 0,
     marginTop: 20,
   },
   headerTitle: {
-    marginTop: -15,
+    marginTop: -35,
+    textAlign: 'center',
     marginBottom: 25,
     color: '#121212',
     fontSize: 23,
@@ -276,4 +276,3 @@ const styles = StyleSheet.create({
     fontFamily: 'Lemon-Regular',
   },
 });
-
