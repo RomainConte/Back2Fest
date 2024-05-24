@@ -1,55 +1,53 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity, Modal, } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'; 
+import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity, Modal } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+
 const MapScreen = () => {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
-  
-    const [fontsLoaded] = useFonts({
+
+  const [fontsLoaded] = useFonts({
     'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
   });
 
-  
   return (
     <ScrollView style={styles.container}>
-  
       <Text style={styles.title}>Carte du festival</Text>
-         <View>
-      <TouchableOpacity onPress={() => setModalVisible(true)}>
-        <Image source={require('../assets/page map festival.png')} style={styles.mapImage} />
-      </TouchableOpacity>
-
-      <Modal
-        animationType="slide"
-        transparent={false}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <TouchableOpacity style={styles.modalContainer} onPress={() => setModalVisible(false)}>
-                      <Image source={require('../assets/page map festival.png')} style={styles.modalImage} />
-                    
+      <View>
+        <TouchableOpacity onPress={() => setModalVisible(true)}>
+          <Image source={require('../assets/page map festival.png')} style={styles.mapImage} />
         </TouchableOpacity>
-      </Modal>
-    </View>
+
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={modalVisible}
+          onRequestClose={() => setModalVisible(false)}
+        >
+          <TouchableOpacity style={styles.modalContainer} onPress={() => setModalVisible(false)}>
+            <Image source={require('../assets/page map festival.png')} style={styles.modalImage} />
+          </TouchableOpacity>
+        </Modal>
+      </View>
       <Text style={styles.legendTitle}>La légende</Text>
       <View style={styles.legendContainer}>
         {renderLegendItem(require('../assets/bin.png'), 'La Cocobox')}
-        {renderLegendItem(require('../assets/ambulance.png'), 'Pompiers / Secours')}
-        {renderLegendItem(require('../assets/camping.png'), 'Aires de camping')}
+        {renderLegendItem(require('../assets/ambulance.png'), 'Secours')}
+        {renderLegendItem(require('../assets/camping.png'), 'camping')}
         {renderLegendItem(require('../assets/toilette.png'), 'Sanitaire')}
         {renderLegendItem(require('../assets/eau.png'), 'Points d’eau')}
         {renderLegendItem(require('../assets/batterie.png'), 'Points de recharge')}
         {renderLegendItem(require('../assets/scene.png'), 'Scènes')}
         {renderLegendItem(require('../assets/parking.png'), 'Aires de repos')}
-        {renderLegendItem(require('../assets/foodtruck.png'), 'Foodtruck / Rafraîchissement')}
+        {renderLegendItem(require('../assets/foodtruck.png'), 'Foodtruck')}
         {renderLegendItem(require('../assets/vélo.png'), 'Porte vélo')}
         {renderLegendItem(require('../assets/taxi.png'), 'Taxis')}
-        {renderLegendItem(require('../assets/bus.png'), 'Arrivée / sortie Bus')}
+        {renderLegendItem(require('../assets/bus.png'), 'Bus')}
         {renderLegendItem(require('../assets/parking.png'), 'Parkings')}
-          </View>
-          <View style={{height: 50}} />
+      </View>
+      <View style={{ height: 50 }} />
     </ScrollView>
   );
 };
@@ -58,7 +56,7 @@ const renderLegendItem = (imageSource, text) => {
   return (
     <View style={styles.legendItem} key={text}>
       <Image source={imageSource} style={styles.legendImage} />
-      <Text style={styles.legendText}>{text}</Text>
+      <Text style={styles.legendText} numberOfLines={1}>{text}</Text>
     </View>
   );
 };
@@ -68,7 +66,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F5E5CC',
   },
-
   title: {
     fontSize: 23,
     fontWeight: 'bold',
@@ -81,7 +78,7 @@ const styles = StyleSheet.create({
   mapImage: {
     width: '100%',
     height: 380,
-      resizeMode: 'contain',
+    resizeMode: 'contain',
     borderRadius: 35,
   },
   legendTitle: {
@@ -98,54 +95,53 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     padding: 15,
     marginHorizontal: 22,
-         shadowColor: '#000',
+    shadowColor: '#000',
     shadowOpacity: 0.2,
     shadowRadius: 8,
-    shadowOffset: { width: 7, height: 7 }, 
+    shadowOffset: { width: 7, height: 7 },
     elevation: 5,
-    
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    marginBottom: 65,
   },
   legendItem: {
+    width: '48%',
     flexDirection: 'row',
     alignItems: 'center',
-      marginBottom: 10,
-      gap: 40,
-    marginLeft: '10%',
+    backgroundColor: '#E4B979',
+    borderRadius: 10,
+    padding: 10,
+    marginVertical: 5,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    shadowOffset: { width: 3, height: 3 },
+    elevation: 3,
   },
   legendImage: {
-    width: 55,
-    height: 55,
-      marginRight: 10,
+    width: 40,
+    height: 40,
+    marginRight: 10,
     resizeMode: 'contain',
   },
   legendText: {
-    fontSize: 16,
+    fontSize: 12,
     color: '#FFF',
-      fontFamily: 'Lemon-Regular',
-    
-    },
-  
-    mapImage: {
-        width: "full",
-        height: 380,
-        marginLeft: 22,
-        marginRight: 22,
-        borderRadius: 18,
+    fontFamily: 'Lemon-Regular',
+    flexShrink: 1,
   },
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-      backgroundColor: '#121212',
-    
+    backgroundColor: '#121212',
   },
   modalImage: {
     width: '100%',
     height: '100%',
-      resizeMode: 'contain',
-    
+    resizeMode: 'contain',
   },
 });
-
 
 export default MapScreen;

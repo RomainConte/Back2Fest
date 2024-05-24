@@ -25,6 +25,7 @@ function Register({ navigation }) {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword1, setShowPassword1] = useState(false);
+  const [passwordValid, setPasswordValid] = useState(false);
 
   const { width, height } = useWindowDimensions();
   const responsiveStyles = createResponsiveStyles(width, height);
@@ -48,6 +49,11 @@ function Register({ navigation }) {
     return team;
   }
 
+  function validatePassword(password) {
+    const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+    return regex.test(password);
+  }
+
   async function registerUser() {
     if (value.email === "" || value.password === "" || value.name === "") {
       setValue({
@@ -67,6 +73,15 @@ function Register({ navigation }) {
       return;
     }
 
+    if (!validatePassword(value.password)) {
+      setValue({
+        ...value,
+        error: "Password does not meet criteria.",
+      });
+      alert("Le mot de passe doit comporter au moins 8 caractères, une majuscule, un chiffre et un caractère spécial.");
+      return;
+    }
+
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, value.email, value.password);
       const user = userCredential.user;
@@ -76,7 +91,8 @@ function Register({ navigation }) {
         email: value.email,
         cocoZ: 0,
         déchet: 0,
-        team: team
+        team: team,
+        ticket: false,
       });
       await set(ref(database, `teams/${team}/count`), (await get(ref(database, `teams/${team}/count`))).val() + 1);
       navigation.navigate("Main");
@@ -88,6 +104,10 @@ function Register({ navigation }) {
       alert("Une erreur s'est produite lors de la création du compte.");
     }
   }
+
+  useEffect(() => {
+    setPasswordValid(validatePassword(value.password));
+  }, [value.password]);
 
   if (!fontsLoaded) {
     return null; // Optionally, render a loading component
@@ -132,6 +152,11 @@ function Register({ navigation }) {
               <Icon name={showPassword ? "eye-off" : "eye"} size={18} color="#FAFAFA" style={responsiveStyles.icon1} />
             </Pressable>
           </View>
+          {!passwordValid && value.password.length > 0 && (
+            <Text style={responsiveStyles.passwordError}>
+              Le mot de passe doit comporter au moins 8 caractères, une majuscule, un chiffre et un caractère spécial.
+            </Text>
+          )}
           <Text style={responsiveStyles.ssti1}>Confirme ton mot de passe</Text>
           <View style={{ ...responsiveStyles.inputContainer }}>
             <Icon style={responsiveStyles.icon} name="lock" size={18} color="#FAFAFA" />
@@ -146,15 +171,27 @@ function Register({ navigation }) {
             </Pressable>
           </View>
         </View>
-        <Pressable onPress={() => navigation.navigate("ForgotPassword")}>
-          <Text style={responsiveStyles.forgotPassword}>En vous enregistrant, vous confirmez votre acceptation de nos conditions d’utilisation, de notre politique de confidentialité et des cookies</Text>
-        </Pressable>
+        <View style={responsiveStyles.termsContainer}>
+          <Text style={responsiveStyles.termsText}>En vous enregistrant, vous confirmez votre acceptation de nos </Text>
+          <Pressable onPress={() => navigation.navigate("TermsOfUse")}>
+            <Text style={responsiveStyles.linkText}>conditions d’utilisation</Text>
+          </Pressable>
+          <Text style={responsiveStyles.termsText}>, de notre </Text>
+          <Pressable onPress={() => navigation.navigate("Poli")}>
+            <Text style={responsiveStyles.linkText}>politique de confidentialité</Text>
+          </Pressable>
+          <Text style={responsiveStyles.termsText}> et des </Text>
+          <Pressable onPress={() => navigation.navigate("Cookies")}>
+            <Text style={responsiveStyles.linkText}>cookies</Text>
+          </Pressable>
+          <Text style={responsiveStyles.termsText}>.</Text>
+        </View>
         <Pressable style={responsiveStyles.button} onPress={registerUser}>
           <Text style={responsiveStyles.buttonText}>CRÉER MON COMPTE</Text>
         </Pressable>
         <Text style={responsiveStyles.bottomText}>
           Déjà un compte ?{" "}
-          <Text style={responsiveStyles.linkText} onPress={() => navigation.navigate("Login")}>
+          <Text style={responsiveStyles.linkText1} onPress={() => navigation.navigate("Login")}>
             CONNECTE-TOI
           </Text>
         </Text>
@@ -245,12 +282,18 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     color: "#D46A6A",
     fontFamily: 'Lemon-Regular',
     fontWeight: "bold",
+    fontSize: 9,
+  },
+   linkText1: {
+    color: "#D46A6A",
+    fontFamily: 'Lemon-Regular',
+    fontWeight: "bold",
+    fontSize: 12,
   },
   ssti: {
     color: "#121212",
     marginBottom: 10,
     marginLeft: 13,
-    
     fontFamily: 'Lemon-Regular',
   },
   ssti1: {
@@ -258,6 +301,26 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     marginTop: height * 0.02,
     marginBottom: 10,
     marginLeft: 13,
+    fontFamily: 'Lemon-Regular',
+  },
+  passwordError: {
+    color: "#D46A6A",
+    fontSize: 10,
+    marginTop: 2,
+    marginBottom: 0,
+    marginLeft: 13,
+    fontFamily: 'Lemon-Regular',
+  },
+  termsContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginBottom: height * 0.02,
+    marginTop: height * -0.013,
+    marginRight: 4,
+  },
+  termsText: {
+    color: "#121212",
+    fontSize: 9,
     fontFamily: 'Lemon-Regular',
   },
 });

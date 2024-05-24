@@ -25,6 +25,9 @@ function EditProfileScreen() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const[showPassword1, setShowPassword1] = useState(false);
+  const[showPassword2, setShowPassword2] = useState(false);
+  
   const { width, height } = useWindowDimensions();
   const navigation = useNavigation();
   const responsiveStyles = createResponsiveStyles(width, height);
@@ -97,16 +100,18 @@ function EditProfileScreen() {
         <ActivityIndicator size="large" color="#C15A5A" />
       ) : (
         <>
-          <View style={responsiveStyles.header}>
-            <Icon
-              name="arrow-left"
-              size={24}
-              color="#C15A5A"
-              style={responsiveStyles.backIcon}
-              onPress={() => navigation.goBack()}
-            />
-            <Text style={responsiveStyles.title}>Modifier le profil</Text>
-          </View>
+       <View style={styles.header1}>
+        <Icon
+          name="arrow-left"
+          size={24}
+          color="#C15A5A"
+          style={styles.backIcon}
+          onPress={() => navigation.goBack()}
+        />
+        <Text style={styles.headerTitle}>
+          Modifier le profil
+        </Text>
+      </View>
           <View style={responsiveStyles.form}>
             <View style={responsiveStyles.inputWrapper}>
               <Text style={responsiveStyles.ssti}>Nom</Text>
@@ -151,11 +156,11 @@ function EditProfileScreen() {
                   placeholder="Nouveau mot de passe"
                   style={responsiveStyles.input}
                   onChangeText={(text) => setValue({ ...value, newPassword: text })}
-                  secureTextEntry={!showPassword}
+                  secureTextEntry={!showPassword1}
                   value={value.newPassword} // Added value prop
                 />
-                <Pressable onPress={() => setShowPassword(!showPassword)}>
-                  <Icon name={showPassword ? "eye-off" : "eye"} size={18} color="#FAFAFA" style={responsiveStyles.icon1} />
+                <Pressable onPress={() => setShowPassword1(!showPassword1)}>
+                  <Icon name={showPassword1 ? "eye-off" : "eye"} size={18} color="#FAFAFA" style={responsiveStyles.icon1} />
                 </Pressable>
               </View>
               <Text style={responsiveStyles.ssti1}>Confirmez le nouveau mot de passe</Text>
@@ -165,11 +170,11 @@ function EditProfileScreen() {
                   placeholder="Confirmez le nouveau mot de passe"
                   style={responsiveStyles.input}
                   onChangeText={(text) => setValue({ ...value, confirmNewPassword: text })}
-                  secureTextEntry={!showPassword}
+                  secureTextEntry={!showPassword2}
                   value={value.confirmNewPassword} // Added value prop
                 />
-                <Pressable onPress={() => setShowPassword(!showPassword)}>
-                  <Icon  name={showPassword ? "eye-off" : "eye"} size={18} color="#FAFAFA" style={responsiveStyles.icon1} />
+                <Pressable onPress={() => setShowPassword2(!showPassword2)}>
+                  <Icon  name={showPassword2 ? "eye-off" : "eye"} size={18} color="#FAFAFA" style={responsiveStyles.icon1} />
                 </Pressable>
               </View>
             </View>
@@ -189,29 +194,9 @@ export default EditProfileScreen;
 // Styles responsives
 const createResponsiveStyles = (width, height) => StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#FAF3DD",
-    paddingHorizontal: width * 0.04,
-  },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    width: "100%",
-    paddingHorizontal: width * 0.04,
-    marginBottom: height * 0.02,
-  },
-  backIcon: {
-    paddingRight: width * 0.02,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#121212",
-    flex: 1,
-    textAlign: "center",
-    fontFamily: 'Lemon-Regular',
+    flexGrow: 1,
+    paddingHorizontal: 20,
+    backgroundColor: '#F5E5CC',
   },
   form: {
     width: "100%",
@@ -267,6 +252,28 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
   },
   icon1: {
     padding: 10,
+  },
+});
+
+
+const styles = StyleSheet.create({
+
+   header1: {
+    paddingTop: 10,
+  },
+  backIcon: {
+    paddingBottom: 10,
+    top: 20,
+    marginTop: 20,
+  },
+  headerTitle: {
+    marginTop: -15,
+    marginBottom: 25,
+    color: '#121212',
+    fontSize: 23,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    fontFamily: 'Lemon-Regular',
   },
 });
 

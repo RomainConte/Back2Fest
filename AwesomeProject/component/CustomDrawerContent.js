@@ -1,50 +1,48 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { Feather, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 
 const CustomDrawerContent = (props) => {
+  const handleLogout = () => {
+    props.navigation.navigate('Login');
+  };
+
   return (
     <DrawerContentScrollView {...props} contentContainerStyle={styles.container}>
       <TouchableOpacity style={styles.closeButton} onPress={() => props.navigation.closeDrawer()}>
         <MaterialIcons name="close" size={24} color="white" />
       </TouchableOpacity>
       <View style={styles.logoContainer}>
-        <Text style={styles.logo}>FireWave</Text>
+        <Image source={require('../assets/fireee.png')} style={styles.logo} resizeMode="contain" />
       </View>
       <DrawerItem
-        icon={({ color, size }) => <Feather name="user" color={color} size={size} />}
+        icon={({ size }) => <Feather name="user" color="white" size={size} />}
         label="Profil"
         onPress={() => props.navigation.navigate('Profil')}
         labelStyle={styles.label}
       />
       <DrawerItem
-        icon={({ color, size }) => <FontAwesome5 name="coins" color={color} size={size} />}
+        icon={({ size }) => <FontAwesome5 name="coins" color="white" size={size} />}
         label="Mes points"
         onPress={() => props.navigation.navigate('Coco')}
         labelStyle={styles.label}
       />
       <DrawerItem
-        icon={({ color, size }) => <Feather name="settings" color={color} size={size} />}
-        label="Paramètres"
-       onPress={() => props.navigation.navigate('Settings')}
+        icon={({ size }) => <Feather name="settings" color="white" size={size} />}
+        label="Réglages"
+        onPress={() => props.navigation.navigate('Settings')}
         labelStyle={styles.label}
       />
       <DrawerItem
-        icon={({ color, size }) => <Feather name="check-circle" color={color} size={size} />}
-        label="Completed"
-        onPress={() => {'login'}}
-        labelStyle={styles.label}
-      />
-      <DrawerItem
-        icon={({ color, size }) => <Feather name="shield" color={color} size={size} />}
-        label="Privacy"
-        // onPress={() => {}}
+        icon={({ size }) => <Feather name="log-out" color="white" size={size} />}
+        label="Déconnexion"
+        onPress={handleLogout}
         labelStyle={styles.label}
       />
     </DrawerContentScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -60,12 +58,17 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   logo: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
+    width: 125, // Largeur augmentée
+    height: 100, // Hauteur augmentée
+    marginBottom: 80,
+    marginTop: -105,
+    marginLeft: -100,
   },
   label: {
     color: 'white',
+    fontSize: 16,
+    marginLeft: -16,
+    marginTop: 14,
   },
 });
 
