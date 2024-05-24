@@ -114,14 +114,13 @@ const Coco = () => {
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View style={styles.rewardItems}>
             {rewards.map((reward, index) => (
-              nbpoints < requiredPoints ? 
-              <View key={index} style={styles.lockedReward}>
-                <Icon name="lock" size={24} color="#000" />
-              </View> :
-              <TouchableOpacity key={index} onPress={() => handleRewardClick(requiredPoints, reward.recompense)}>
+              <TouchableOpacity key={index} onPress={() => nbpoints >= requiredPoints && handleRewardClick(requiredPoints, reward.recompense)}>
                 <View style={styles.rewardImageContainer}>
+                  <Image source={rewardImages[reward.recompense]} style={[styles.rewardImage, nbpoints < requiredPoints && styles.lockedImage]} />
+                  {nbpoints < requiredPoints && (
+                    <Icon name="lock" size={48} color="#000" style={styles.lockedIcon} />
+                  )}
                   <Text style={styles.rewardText}>{reward.recompense}</Text>
-                  <Image source={rewardImages[reward.recompense]} style={styles.rewardImage} />
                 </View>
               </TouchableOpacity>
             ))}
@@ -134,16 +133,20 @@ const Coco = () => {
   const renderPurchasedRewards = () => {
     return (
       <View style={{ ...styles.rewardsContainer, backgroundColor: '#C15A5A', paddingLeft: 20, paddingRight: 20 }}>
-        <View style={styles.purchasedRewardItems}>
-          {rewards.map((reward, index) => (
-            <TouchableOpacity key={index} style={styles.purchasedRewardItem} onPress={() => handlePurchasedRewardClick(reward)}>
-              <View style={styles.purchasedRewardImageContainer}>
-                <Text style={styles.rewardText}>{reward.recompense}</Text>
-                <Image source={rewardImages[reward.recompense]} style={styles.purchasedRewardImage} />
-              </View>
-            </TouchableOpacity>
-          ))}
-        </View>
+        {rewards.length === 0 ? (
+          <Text style={styles.noRewardsText}>Vous n'avez pas de récompense</Text>
+        ) : (
+          <View style={styles.purchasedRewardItems}>
+            {rewards.map((reward, index) => (
+              <TouchableOpacity key={index} style={styles.purchasedRewardItem} onPress={() => handlePurchasedRewardClick(reward)}>
+                <View style={styles.purchasedRewardImageContainer}>
+                  <Image source={rewardImages[reward.recompense]} style={styles.purchasedRewardImage} />
+                  <Text style={styles.rewardText}>{reward.recompense}</Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+        )}
       </View>
     );
   };
@@ -169,7 +172,7 @@ const Coco = () => {
       <View style={styles.qrHeader}>
         <Text style={styles.sectionTitle1}>Mon QR Code</Text>
         <TouchableOpacity onPress={() => setModalVisible(true)}>
-          <Text style={{...styles.sectionTitle4, }}>
+          <Text style={styles.sectionTitle4}>
             Agrandir mon QRcode {' '}
             <Icon name="chevron-right" size={12} color="#121212" />
           </Text>
@@ -479,6 +482,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 18,
     borderBottomRightRadius: 18,
     paddingBottom: 20,
+    minHeight: 800,
   },
   rewardSection: {
     marginVertical: 10,
@@ -511,14 +515,14 @@ const styles = StyleSheet.create({
     height: 90,
     resizeMode: 'contain',
   },
-  lockedReward: {
-    width: 140,
-    height: 140,
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 5,
-    backgroundColor: '#EEE',
-    borderRadius: 10,
+  lockedImage: {
+    opacity: 0.7,
+  },
+  lockedIcon: {
+    position: 'absolute',
+    top: '52%',
+    left: '54%',
+    transform: [{ translateX: -24 }, { translateY: -24 }],
   },
   purchasedRewardItems: {
     flexDirection: 'row',
@@ -530,10 +534,11 @@ const styles = StyleSheet.create({
     width: '48%',
     padding: 10,
     borderRadius: 10,
+    marginTop: 30,
     alignItems: 'center',
   },
   purchasedRewardImageContainer: {
-    width: '100%',
+    width: 160,
     height: 160,
     marginBottom: 5,
     borderRadius: 10,
@@ -551,16 +556,24 @@ const styles = StyleSheet.create({
   rewardText: {
     position: 'absolute',
     top: 5,
-    left: 10,
-    fontSize: 15,
+    left: 5,
+    fontSize: 12,
     color: '#121212',
     textAlign: 'center',
     fontFamily: 'Lemon-Regular',
+
   },
   rewardCode: {
     fontSize: 15,
     color: '#888',
     textAlign: 'center',
+    fontFamily: 'Lemon-Regular',
+  },
+  noRewardsText: {
+    fontSize: 15,
+    color: '#FAFAFA',
+    textAlign: 'center',
+    marginTop: 20,
     fontFamily: 'Lemon-Regular',
   },
   centeredView: {

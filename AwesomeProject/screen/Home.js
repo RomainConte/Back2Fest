@@ -6,68 +6,75 @@ import { useFonts } from 'expo-font';
 const App = () => {
   const navigation = useNavigation();
 
-    const [fontsLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
   });
-
-
 
   const data = {
     days: [
       {
         day: 'En ce moment',
         images: [
-          { src: require('../assets/josman.png'), label: 'Josman' },
-          { src: require('../assets/8ruki.png'), label: '8ruki' },
-          { src: require('../assets/Karris.png'), label: 'Karris' },
-          { src: require('../assets/Nes.png'), label: 'Nes' },
-          { src: require('../assets/La fève.png'), label: 'La fève' },
+          { src: require('../assets/La-feve-epicmag 2.png'), index: 29, name: 'La Feve' },
+          { src: require('../assets/NAPS.png'), index: 1, name: 'NAPS' },
         ],
-        
       },
       {
         day: 'À ne pas manquer',
         images: [
-          { src: require('../assets/La-feve-epicmag 2.png'),},
-          { src: require('../assets/Rectangle 725.png'),},
-          { src: require('../assets/NAPS.png'),},
+          { src: require('../assets/Rectangle 725.png'), index: 22, name: 'Josman' },
+          { src: require('../assets/Luther 1.png'), index: 19, name: 'Luther' },
+          { src: require('../assets/ZOLA.png'), index: 18, name: 'ZOLA' },
+          { src: require('../assets/Houdi 1.png'), index: 22, name: 'Houdi' },
+          { src: require('../assets/BIANCA COSTA.png'), index: 20, name: 'Bianca Costa' },
         ],
       },
     ],
   };
 
+  if (!fontsLoaded) {
+    return <View><Text>Loading...</Text></View>;
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.profileContainer}>
-      <TouchableOpacity style={styles.profileWrapper2} >
-          <Image source={require('../assets/logo_fire.png')} style={styles.profileImage2} />
+        <TouchableOpacity style={styles.profileWrapper2}>
+          <Image source={require('../assets/logo noir sans fong.png')} style={styles.profileImage2} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.profileWrapper} onPress={() => navigation.openDrawer()}>
-          <Image source={require('../assets/profil.png')} style={styles.profileImage} />
+          <Image source={require('../assets/menu1.png')} style={styles.profileImage} />
         </TouchableOpacity>
       </View>
-        {data.days.map((day, index) => (
+      {data.days.map((day, index) => (
         <View key={index} style={styles.dayContainer}>
           <Text style={styles.dayTitle}>{day.day}</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={styles.imageContainer}>
               {day.images.slice(0, 5).map((image, idx) => (
-                <TouchableOpacity key={idx} style={[styles.imageWrapper, index === 1 && { width: 300, height: 300 }]}>
+                <TouchableOpacity
+                  key={idx}
+                  style={[styles.imageWrapper, index === 1 && { width: 300, height: 300 }]}
+                  onPress={() => {
+                    console.log('Clicked artist index:', image.index); // Log the artist index
+                    navigation.navigate('artiste', { artistIndex: image.index });
+                  }}
+                >
                   <Image source={image.src} style={[styles.image, index === 1 && { width: '100%', height: '100%' }]} />
-      
+                  <Text style={styles.imagelabel}>{image.name}</Text>
                 </TouchableOpacity>
               ))}
             </View>
           </ScrollView>
         </View>
-        ))}
+      ))}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop : 60,
+    paddingTop: 60,
     flex: 1,
     backgroundColor: '#F5E5CC',
   },
@@ -99,6 +106,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     margin: 5,
+    position: 'relative',
   },
   image: {
     width: '100%',
@@ -109,20 +117,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-
+    
   },
   profileWrapper: {
-    width: 40,
-    height: 40,
-    borderRadius: 50,
+    width: 50,
+    height: 50,
+    paddingTop: 14,
+    
     overflow: 'hidden',
     margin: 15,
     backgroundColor: '#F5E5CC',
-
   },
   profileImage: {
     width: 40,
-    height: 40,
+    height: 28,
   },
   profileWrapper2: {
     width: 160,
@@ -138,15 +146,16 @@ const styles = StyleSheet.create({
   },
   imagelabel: {
     position: 'absolute',
-    bottom: 15,
+    bottom: 10,
     right: 10,
     color: 'white',
-    width: '100%',
     padding: 5,
     textAlign: 'right',
     fontFamily: 'Lemon-Regular',
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 18,
+   
+    borderRadius: 5,
   },
 });
 

@@ -8,13 +8,16 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { name as appName } from './app.json';
-import { Home, Programme, Map, Billet, Start, Start2, Profil, Settings, Coco, login, register, artiste, FaqPage, Credits, EditProfileScreen, FestivalRules, Acces, Camping, Poli, Cookies, TermsOfUse } from './screen';
+import { Home, Programme, Map, Billet, Start, Profil, Settings, Coco, login, register, artiste, FaqPage, Credits, EditProfileScreen, FestivalRules, Acces, Camping, Poli, Cookies, TermsOfUse } from './screen';
 import CustomDrawerContent from './component/CustomDrawerContent';
 import "./config/firebase";
+import { LogBox } from 'react-native';
+LogBox.ignoreAllLogs();
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+
 
 const screenoption = {
   tabBarBackground: () => (
@@ -62,7 +65,6 @@ function MyTabs() {
           headerShown: false,
         }}
       />
-      
       <Tab.Screen
         name="Programme"
         component={Programme}
@@ -125,7 +127,6 @@ function MainNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Start" component={Start} options={{ animationEnabled: false }} />
-      <Stack.Screen name="Start2" component={Start2} options={{ animationEnabled: false }} />
       <Stack.Screen name="Login" component={login} options={{ animationEnabled: false }} />
       <Stack.Screen name="Main" component={DrawerNavigator} options={{ animationEnabled: false }} />
       <Stack.Screen name="Profil" component={Profil} options={{ animationEnabled: false }}  />
@@ -177,7 +178,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10, // Reduced padding to reduce spacing
     borderRadius: 30,
     marginBottom: -45,
-    width:120,// Adjust this value to move the icons down
+    width: 120, // Adjust this value to move the icons down
   },
   iconFocused: {
     marginRight: 2, // Reduced margin to reduce spacing
