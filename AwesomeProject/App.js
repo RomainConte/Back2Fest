@@ -124,25 +124,25 @@ function MyTabs() {
 function MainNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Start" component={Start} />
-      <Stack.Screen name="Start2" component={Start2} />
-      <Stack.Screen name="Login" component={login} />
-      <Stack.Screen name="Main" component={DrawerNavigator} />
-      <Stack.Screen name="Profil" component={Profil} />
-      <Stack.Screen name="Settings" component={Settings} />
-      <Stack.Screen name="Coco" component={Coco} />
-      <Stack.Screen name="Programme" component={Programme} />
-      <Stack.Screen name="register" component={register} />
-      <Stack.Screen name="artiste" component={artiste} />
-      <Stack.Screen name="FaqPage" component={FaqPage} />
-      <Stack.Screen name="Credits" component={Credits} />
-      <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
+      <Stack.Screen name="Start" component={Start} options={{ animationEnabled: false }} />
+      <Stack.Screen name="Start2" component={Start2} options={{ animationEnabled: false }} />
+      <Stack.Screen name="Login" component={login} options={{ animationEnabled: false }} />
+      <Stack.Screen name="Main" component={DrawerNavigator} options={{ animationEnabled: false }} />
+      <Stack.Screen name="Profil" component={Profil} options={{ animationEnabled: false }}  />
+      <Stack.Screen name="Settings" component={Settings} options={{ animationEnabled: false }} />
+      <Stack.Screen name="Coco" component={Coco} options={{ animationEnabled: false }} />
+      <Stack.Screen name="Programme" component={Programme} options={{ animationEnabled: false }} />
+      <Stack.Screen name="register" component={register} options={{ animationEnabled: false }} />
+      <Stack.Screen name="artiste" component={artiste} options={{ animationEnabled: false }} />
+      <Stack.Screen name="FaqPage" component={FaqPage} options={{ animationEnabled: false }} />
+      <Stack.Screen name="Credits" component={Credits} options={{ animationEnabled: false }} />
+      <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} options={{ animationEnabled: false }} />
       <Stack.Screen name="FestivalRules" component={FestivalRules} />
-      <Stack.Screen name="Acces" component={Acces} />
-      <Stack.Screen name="Camping" component={Camping} />
-      <Stack.Screen name="Poli" component={Poli} />
-      <Stack.Screen name="Coockies" component={Cookies} />
-      <Stack.Screen name="TermsOfUse" component={TermsOfUse} />
+      <Stack.Screen name="Acces" component={Acces} options={{ animationEnabled: false }} />
+      <Stack.Screen name="Camping" component={Camping} options={{ animationEnabled: false }} />
+      <Stack.Screen name="Poli" component={Poli} options={{ animationEnabled: false }} />
+      <Stack.Screen name="Coockies" component={Cookies} options={{ animationEnabled: false }} />
+      <Stack.Screen name="TermsOfUse" component={TermsOfUse} options={{ animationEnabled: false }} />
     </Stack.Navigator>
   );
 }
