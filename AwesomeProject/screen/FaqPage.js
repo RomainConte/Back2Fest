@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-nati
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 const FaqPage = () => {
   const navigation = useNavigation();
   const [expanded, setExpanded] = useState({});
@@ -14,7 +16,7 @@ const FaqPage = () => {
     }));
   };
 
-    const [fontsLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
   });
 
@@ -47,16 +49,25 @@ const FaqPage = () => {
       question: "Puis je entrer et sortir du festival ?",
       answer: "Pour des raisons de sécurité, les sorties et réentrées ne sont pas autorisées. Assurez-vous d'avoir tout ce dont vous avez besoin avant d'entrer.",
     },
+    
   ];
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer}>
+   
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-            <Ionicons name="arrow-back" size={24} color="#C15A5A" />
-          </TouchableOpacity>
-          <Text style={styles.headerText}>FAQ</Text>
+          <View style={styles.header1}>
+            <Icon
+              name="arrow-left"
+              size={24}
+              color="#C15A5A"
+              style={styles.backIcon}
+              onPress={() => navigation.goBack()}
+            />
+            <Text style={styles.headerTitle}>
+              FAQ
+            </Text>
+          </View>
         </View>
         <View style={styles.content}>
           {faqData.map((item, index) => (
@@ -67,6 +78,7 @@ const FaqPage = () => {
                   name={expanded[index] ? "chevron-up" : "chevron-down"}
                   size={24}
                   color="#C15A5A"
+                  style={styles.chevronIcon}
                 />
               </TouchableOpacity>
               {expanded[index] && <Text style={styles.answerText}>{item.answer}</Text>}
@@ -74,59 +86,68 @@ const FaqPage = () => {
           ))}
         </View>
       </View>
-    </ScrollView>
+
   );
 };
 
 const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
-    backgroundColor: '#F5E5CC', // Couleur de fond
+    backgroundColor: '#F5E5CC', 
   },
   container: {
     flex: 1,
-    backgroundColor: '#F5E5CC', // Couleur de fond
+    backgroundColor: '#F5E5CC', 
     paddingHorizontal: 20,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 40,
-    marginBottom: 20,
-  },
-  backButton: {
-    marginRight: 10,
-  },
-  headerText: {
-    fontSize: 24,
-    color: '#C15A5A',
-    fontWeight: 'bold',
-    fontFamily: 'Lemon-Regular',
   },
   content: {
     paddingTop: 20,
   },
   faqItem: {
-    marginBottom: 20,
+    marginBottom: 10,
   },
   question: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 10,
+    paddingHorizontal: 14,
     borderBottomWidth: 1,
     borderBottomColor: '#C15A5A',
   },
   questionText: {
-    fontSize: 18,
+    flex: 1,
+    fontSize: 15,
     color: '#1C1C1C',
     fontWeight: 'bold',
     fontFamily: 'Lemon-Regular',
+    paddingBottom: 10,
+  },
+  chevronIcon: {
+    marginLeft: 10,
   },
   answerText: {
     marginTop: 10,
-    fontSize: 16,
-    color: '#333',
+    paddingLeft: 14,
+    fontSize: 12,
+    color: '#4D4D4D',
+    fontFamily: 'Lemon-Regular',
+  },
+    header1: {
+    paddingTop: 10,
+  },
+    backIcon: {
+    paddingBottom: 10,
+    top: 20,
+    marginTop: 20,
+  },
+  headerTitle: {
+    marginTop: -15,
+    marginBottom: 25,
+    color: '#121212',
+    fontSize: 23,
+    fontWeight: 'bold',
+    alignSelf: 'center',
     fontFamily: 'Lemon-Regular',
   },
 });

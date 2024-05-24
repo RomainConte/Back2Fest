@@ -169,8 +169,8 @@ const Coco = () => {
       <View style={styles.qrHeader}>
         <Text style={styles.sectionTitle1}>Mon QR Code</Text>
         <TouchableOpacity onPress={() => setModalVisible(true)}>
-          <Text style={styles.sectionTitle4}>
-            Agrandir mon QRcode 
+          <Text style={{...styles.sectionTitle4, }}>
+            Agrandir mon QRcode {' '}
             <Icon name="chevron-right" size={12} color="#121212" />
           </Text>
         </TouchableOpacity>
@@ -188,7 +188,7 @@ const Coco = () => {
               <QRCode
                 value={qrData}
                 size={280}
-                color="white"
+                color="black"
                 backgroundColor="transparent"
               />
               <Text style={styles.qrModalText}>
@@ -315,6 +315,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     marginTop: -15,
+    marginBottom: 25,
     color: '#121212',
     fontSize: 23,
     fontWeight: 'bold',
@@ -361,30 +362,26 @@ const styles = StyleSheet.create({
   sectionTitle1: {
     fontSize: 18,
     color: '#121212',
-    marginBottom: 10,
-    marginLeft: 22,
+    marginLeft: 26,
     fontFamily: 'Lemon-Regular',
-  },
-  sectionTitle2: {
-    fontSize: 18,
-    color: '#FAFAFA',
-    marginBottom: 10,
-    marginLeft: 22,
-    fontFamily: 'Lemon-Regular',
-  },
-  sectionTitle3: {
-    fontSize: 17,
-    color: '#121212',
     paddingBottom: 10,
-    marginLeft: 22,
+  },
+
+  sectionTitle3: {
+    fontSize: 18,
+    color: '#121212',
+    marginLeft: 7,
     fontFamily: 'Lemon-Regular',
+    paddingBottom: 10,
   },
   sectionTitle4: {
     color: '#121212',
-    paddingTop: 3,
     marginRight: 22,
-    marginTop: 30,
     fontFamily: 'Lemon-Regular',
+    fontSize: 12,
+    paddingBottom: 5,
+    paddingRight: 2,
+    
   },
   qrCodeText: {
     marginTop: 6,
@@ -393,7 +390,7 @@ const styles = StyleSheet.create({
   coinContainer: {
     alignItems: 'left',
     marginLeft: 20,
-    marginVertical: 10,
+  
     backgroundColor: '#C15A5A',
     marginRight: 20,
     padding: 13,
@@ -402,7 +399,7 @@ const styles = StyleSheet.create({
     marginBottom: 17,
   },
   coinText: {
-    fontSize: 18,
+    fontSize: 15,
     color: '#FAFAFA',
     fontFamily: 'Lemon-Regular',
   },
@@ -414,7 +411,7 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   statsText: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#121212',
     paddingBottom: 10,
     fontFamily: 'Lemon-Regular',
@@ -439,7 +436,7 @@ const styles = StyleSheet.create({
     height: 25,
   },
   statsNumber: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: 'bold',
     color: '#FAFAFA',
     padding: 2,
@@ -447,7 +444,7 @@ const styles = StyleSheet.create({
   },
   statsSubtitle: {
     marginLeft: 2,
-    fontSize: 18,
+    fontSize: 15,
     color: '#FAFAFA',
     fontFamily: 'Lemon-Regular',
   },
@@ -468,7 +465,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#C15A5A',  
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
     fontFamily: 'Lemon-Regular',
@@ -490,6 +487,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#FAFAFA',
     marginBottom: 10,
+    marginLeft: 8,
     fontFamily: 'Lemon-Regular',
   },
   rewardItems: {
@@ -560,7 +558,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Lemon-Regular',
   },
   rewardCode: {
-    fontSize: 14,
+    fontSize: 15,
     color: '#888',
     textAlign: 'center',
     fontFamily: 'Lemon-Regular',

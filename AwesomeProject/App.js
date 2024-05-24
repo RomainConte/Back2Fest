@@ -1,30 +1,45 @@
-import { AppRegistry } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-
-import { Home, Programme, Settings, Start, Start2, Profil, Coco, Billet, Map, J1, J2 ,J3, J4, login, register, artiste,  EditProfileScreen, FestivalRules, Acces, Credits, Camping, FaqPage, TermsOfUse, Coockies,  Poli,  } from './screen';
-
+import React from 'react';
+import { AppRegistry, ImageBackground, StyleSheet, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Entypo } from '@expo/vector-icons';
-import CustomDrawerContent from './component/CustomDrawerContent.js';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import 'react-native-gesture-handler';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Feather from 'react-native-vector-icons/Feather';
+import Entypo from 'react-native-vector-icons/Entypo';
 import { name as appName } from './app.json';
-import { Feather } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
+import { Home, Programme, Map, Billet, Start, Start2, Profil, Settings, Coco, login, register, artiste, FaqPage, Credits, EditProfileScreen, FestivalRules, Acces, Camping, Poli, Cookies, TermsOfUse } from './screen';
+import CustomDrawerContent from './component/CustomDrawerContent';
 import "./config/firebase";
-// import { LogBox } from 'react-native';
-// LogBox.ignoreAllLogs(true);
-
-
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+
+const screenoption = {
+  tabBarBackground: () => (
+    <ImageBackground source={require('./assets/waverouge.png')} style={styles.backgroundImage} />
+  ),
+  tabBarActiveTintColor: '#E4B979',
+  tabBarStyle: {
+    backgroundColor: 'transparent',
+    borderTopWidth: 0,
+    elevation: 0,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    paddingHorizontal: 15,
+    right: 0,
+    height: 110, // Adjust this height as necessary
+  },
+  tabBarLabelStyle: {
+    fontSize: 12,
+    fontFamily: 'Lemon-Regular',
+    marginBottom: -18,
+    color: '#FAFAFA',
+  },
+  tabBarShowLabel: false,
+};
 
 function MyTabs() {
   return (
@@ -34,11 +49,16 @@ function MyTabs() {
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View style={{}}>
-              <Ionicons name="home-outline" size={24} color={focused ? '#E4B979' : '#FAFAFA'} />
+            <View style={focused ? styles.focusedTab : styles.iconContainer}>
+              <Ionicons 
+                name="home-outline" 
+                size={24} 
+                color={focused ? '#FAFAFA' : '#FAFAFA'} 
+                style={focused ? styles.iconFocused : styles.icon}
+              />
+              {focused && <Text style={styles.tabBarLabel}>Accueil</Text>}
             </View>
           ),
-          tabBarLabel: 'Home',
           headerShown: false,
         }}
       />
@@ -48,8 +68,14 @@ function MyTabs() {
         component={Programme}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View style={{}}>
-              <Ionicons name="calendar-outline" size={24} color={focused ? '#E4B979' : '#FAFAFA'} />
+            <View style={focused ? styles.focusedTab : styles.iconContainer}>
+              <Ionicons 
+                name="calendar-outline" 
+                size={24} 
+                color={focused ? '#FAFAFA' : '#FAFAFA'} 
+                style={focused ? styles.iconFocused : styles.icon}
+              />
+              {focused && <Text style={styles.tabBarLabel}>Programme</Text>}
             </View>
           ),
           headerShown: false,
@@ -60,8 +86,14 @@ function MyTabs() {
         component={Map}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View style={{}}>
-              <Feather name="map-pin" size={24} color={focused ? '#E4B979' : '#FAFAFA'} />
+            <View style={focused ? styles.focusedTab : styles.iconContainer}>
+              <Feather 
+                name="map-pin" 
+                size={24} 
+                color={focused ? '#FAFAFA' : '#FAFAFA'} 
+                style={focused ? styles.iconFocused : styles.icon}
+              />
+              {focused && <Text style={styles.tabBarLabel}>Carte</Text>}
             </View>
           ),
           headerShown: false,
@@ -72,8 +104,14 @@ function MyTabs() {
         component={Billet}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View style={{}}>
-              <Entypo name="ticket" size={24} color={focused ? '#E4B979' : '#FAFAFA'} />
+            <View style={focused ? styles.focusedTab : styles.iconContainer}>
+              <Entypo 
+                name="ticket" 
+                size={24} 
+                color={focused ? '#FAFAFA' : '#FAFAFA'} 
+                style={focused ? styles.iconFocused : styles.icon}
+              />
+              {focused && <Text style={styles.tabBarLabel}>Billetterie</Text>}
             </View>
           ),
           headerShown: false,
@@ -93,9 +131,7 @@ function MainNavigator() {
       <Stack.Screen name="Profil" component={Profil} />
       <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="Coco" component={Coco} />
-    
       <Stack.Screen name="Programme" component={Programme} />
-
       <Stack.Screen name="register" component={register} />
       <Stack.Screen name="artiste" component={artiste} />
       <Stack.Screen name="FaqPage" component={FaqPage} />
@@ -105,9 +141,8 @@ function MainNavigator() {
       <Stack.Screen name="Acces" component={Acces} />
       <Stack.Screen name="Camping" component={Camping} />
       <Stack.Screen name="Poli" component={Poli} />
-      <Stack.Screen name="Coockies" component={Coockies} />
+      <Stack.Screen name="Coockies" component={Cookies} />
       <Stack.Screen name="TermsOfUse" component={TermsOfUse} />
-
     </Stack.Navigator>
   );
 }
@@ -123,6 +158,41 @@ function DrawerNavigator() {
   );
 }
 
+const styles = StyleSheet.create({
+  backgroundImage: {
+    width: '100%',
+    height: '100%',
+  },
+  iconContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: -45, // Adjust this value to move the icons down
+  },
+  focusedTab: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#E4B979',
+    paddingHorizontal: 8, // Reduced padding to reduce spacing
+    paddingVertical: 10, // Reduced padding to reduce spacing
+    borderRadius: 30,
+    marginBottom: -45,
+    width:120,// Adjust this value to move the icons down
+  },
+  iconFocused: {
+    marginRight: 2, // Reduced margin to reduce spacing
+  },
+  tabBarLabel: {
+    color: '#FAFAFA',
+    fontSize: 12,
+    fontFamily: 'Lemon-Regular',
+    marginLeft: 2, // Reduced margin to reduce spacing
+  },
+  icon: {
+    marginBottom: 0, // Ensure no additional margin on default state
+  },
+});
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -130,17 +200,5 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const screenoption = {
-  tabBarStyle: {
-    backgroundColor: '#C15A5A',
-  },
-  tabBarActiveTintColor: '#E4B979',
-  tabBarInactiveTintColor: 'white',
-  tabBarLabelStyle: {
-    fontSize: 12,
-    fontWeight: 'bold',
-  },
-};
 
 AppRegistry.registerComponent(appName, () => App);

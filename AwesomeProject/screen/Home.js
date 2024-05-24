@@ -37,7 +37,7 @@ const App = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.profileContainer}>
       <TouchableOpacity style={styles.profileWrapper2} >
           <Image source={require('../assets/logo_fire.png')} style={styles.profileImage2} />
@@ -61,7 +61,7 @@ const App = () => {
           </ScrollView>
         </View>
         ))}
-    </ScrollView>
+    </View>
   );
 };
 

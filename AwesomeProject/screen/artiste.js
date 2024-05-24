@@ -6,6 +6,7 @@ import { database } from '../config/firebase.js';
 import { Ionicons } from '@expo/vector-icons'; // Pour l'icône de retour
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 const Artiste = () => {
@@ -46,16 +47,23 @@ const Artiste = () => {
         <Text style={styles.textcenter}>Loading...</Text>
       </View>
     );
+    
   }
 
+
   return (
+    
     <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={32} color="#C15A5A" />
-        </TouchableOpacity>
+       <TouchableOpacity onPress={() => navigation.goBack()} style={styles.header1}>
+        <Icon
+          name="arrow-left"
+          size={24}
+          color="#C15A5A"
+          style={styles.backIcon}
+
+        />
         <Text style={styles.artistName}>{artist.name}</Text>
-      </View>
+        </TouchableOpacity>
       <View style={styles.imageContainer}>
         <Image source={{ uri: artist.imageUrl }} style={styles.image} />
       </View>
@@ -84,7 +92,7 @@ const Artiste = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5D7B8',
+    backgroundColor: '#F5E5CC',
   },
   header: {
     flexDirection: 'row',
@@ -110,13 +118,13 @@ const styles = StyleSheet.create({
     
   },
   artistName: {
-    fontSize: 24,
+    fontSize: 23,
     fontWeight: 'bold',
     color: '#121212',
     textAlign: 'center',
     flex: 1,
-    marginRight: 60,
-    marginTop: 10,
+    marginBottom: 30,
+    marginTop: -15,
     fontFamily: 'Lemon-Regular',
   },
   bioContainer: {
@@ -126,7 +134,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   bioText: {
-    fontSize: 16,
+    fontSize: 15,
     lineHeight: 24,
     color: '#333',
     marginBottom: 10,
@@ -198,6 +206,24 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#121212',
     marginTop: 100,
+    fontFamily: 'Lemon-Regular',
+  },
+     header1: {
+    paddingTop: 10,
+  },
+  backIcon: {
+    paddingBottom: 10,
+    top: 20,
+    marginTop: 20,
+    marginLeft: 20,
+  },
+  headerTitle: {
+    marginTop: -15,
+    marginBottom: 25,
+    color: '#121212',
+    fontSize: 23,
+    fontWeight: 'bold',
+    alignSelf: 'center',
     fontFamily: 'Lemon-Regular',
   },
 });

@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image } from 'rea
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const partners = [
   { name: 'CocaCola', src: require('../assets/Coca-Cola_logo 1.png') },
@@ -32,11 +33,17 @@ const Credits = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={24} color="#C15A5A" />
-        </TouchableOpacity>
-        <Text style={styles.headerText}>Crédits</Text>
+      <View style={styles.header1}>
+        <Icon
+          name="arrow-left"
+          size={24}
+          color="#C15A5A"
+          style={styles.backIcon}
+          onPress={() => navigation.goBack()}
+        />
+        <Text style={styles.headerTitle}>
+          Crédits
+        </Text>
       </View>
       
       <Text style={styles.subHeader}>Nos partenaires</Text>
@@ -46,6 +53,10 @@ const Credits = () => {
           <Image key={index} source={partner.src} style={styles.partnerImage} />
         ))}
       </View>
+      <Text style={styles.subHeader}>Application développé par COCO</Text>
+      <Image source={require('../assets/logo_coco.png')} style={{ width: 116, height: 105, alignSelf: 'center', marginTop: 20 }} />
+      <Text style={styles.subHeader2}>Festival organisé par Firewave</Text>
+      <Image source={require('../assets/logo_fire.png')} style={{ width: 200, height:80, alignSelf: 'center', marginTop: 20 }} />
     </ScrollView>
   );
 };
@@ -53,31 +64,24 @@ const Credits = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FAEBD7', 
+    backgroundColor: '#F5E5CC', 
+    paddingHorizontal: 20,
+    paddingTop: 20,
   },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 40,
-    marginBottom: 20,
-    paddingHorizontal: 10,
-  },
-  backButton: {
-    marginRight: 10,
-  },
-  headerText: {
-    fontSize: 24,
-    color: '#C15A5A', 
-    fontWeight: 'bold',
-    flex: 1,
-    textAlign: 'center',
-    fontFamily: 'Lemon-Regular',
-  },
+
   subHeader: {
     fontSize: 18,
-    color: '#000',
+    color: '#C15A5A',
     marginLeft: 20,
     marginTop: 10,
+    fontWeight: 'bold',
+    fontFamily: 'Lemon-Regular',
+  },
+    subHeader2: {
+    fontSize: 18,
+    color: '#C15A5A',
+    marginLeft: 20,
+    marginTop: 30,
     fontWeight: 'bold',
     fontFamily: 'Lemon-Regular',
   },
@@ -92,6 +96,25 @@ const styles = StyleSheet.create({
     height: 50,
     margin: 10,
     resizeMode: 'contain',
+  },
+        header1: {
+    paddingTop: 10,
+  },
+  backIcon: {
+    paddingBottom: 10,
+    top: 0,
+    marginTop: 20,
+  },
+  headerTitle: {
+    marginTop: -35,
+    
+    textAlign: 'center',
+    marginBottom: 25,
+    color: '#121212',
+    fontSize: 23,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    fontFamily: 'Lemon-Regular',
   },
 });
 

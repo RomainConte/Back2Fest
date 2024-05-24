@@ -4,7 +4,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import app from "../config/firebase"; // Ensure Firebase is initialized
+import app from "../config/firebase"; 
 
 const auth = getAuth(app);
 
@@ -106,16 +106,16 @@ export default SignInScreen;
 const createResponsiveStyles = (width, height) => StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+   paddingTop: 100,
     alignItems: "center",
     backgroundColor: "#FAF3DD",
-    paddingHorizontal: width * 0.04,
+    
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     color: "#121212",
-    marginBottom: height * 0.012,
+    marginBottom: height * 0.008,
     fontFamily: 'Lemon-Regular',
   },
   form: {
@@ -154,9 +154,10 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     marginTop: height * -0.015,
     marginRight: 1,
     fontFamily: 'Lemon-Regular',
+    fontSize: 12,
   },
   button: {
-    backgroundColor: "#C15A5A",
+    backgroundColor: "#E4B979",
     borderRadius: 25,
     paddingVertical: height * 0.012,
     alignItems: "center",
@@ -176,6 +177,7 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     textAlign: "center",
     paddingTop: 0,
     fontFamily: 'Lemon-Regular',
+    fontSize: 13,
   },
   linkText: {
     color: "#D46A6A",

@@ -14,7 +14,7 @@ import FestivalRules from './FestivalRules.js';
 import Acces from './Acces.js';
 import Camping from './Camping.js';
 import Poli from './Poli.js';
-import Coockies from './Coockies.js';
+import Cookies from './Cookies.js';
 import TermsOfUse from './Condi.js';
 import login from './login'
 import register from './register'
@@ -38,7 +38,7 @@ export{
     Acces,
     Camping,
     Poli,
-    Coockies,
+    Cookies,
     TermsOfUse,
     login,
     register,

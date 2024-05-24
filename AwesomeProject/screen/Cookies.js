@@ -13,7 +13,7 @@ const Coockies = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.header}>
+     <View style={styles.header1}>
         <Icon
           name="arrow-left"
           size={24}
@@ -21,7 +21,9 @@ const Coockies = () => {
           style={styles.backIcon}
           onPress={() => navigation.goBack()}
         />
-        <Text style={styles.headerText}>Politique de gestion des cookies</Text>
+        <Text style={styles.headerTitle}>
+          Cookies
+        </Text>
       </View>
       <Text style={styles.description}>
         Cette politique de gestion des cookies explique comment Firewave utilise les cookies et technologies similaires sur son application mobile.
@@ -46,7 +48,7 @@ const Coockies = () => {
       <Text style={styles.item}>
         - E-mail : Firewave@gmail.com
       </Text>
-      <Text style={styles.item}>
+      <Text style={styles.item2}>
         - Téléphone : 08 92 73 27 93
       </Text>
     </ScrollView>
@@ -56,40 +58,52 @@ const Coockies = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    padding: 30,
-    backgroundColor: '#F9EFD1',
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    backgroundColor: '#F5E5CC',
   },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-    
-  },
-  backIcon: {
-    padding: 10,
-  },
-  headerText: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#E06B6B',
-    marginLeft: 10,
-    fontFamily: 'Lemon-Regular',
-  },
+
   description: {
-    fontSize: 18,
+    fontSize: 12,
     marginBottom: 25,
     fontFamily: 'Lemon-Regular',
   },
   subHeader: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
     marginTop: 20,
     fontFamily: 'Lemon-Regular',
+    color: '#C15A5A',
   },
   item: {
-    fontSize: 18,
+    fontSize: 12,
     marginBottom: 15,
+    fontFamily: 'Lemon-Regular',
+  },
+   item2: {
+    fontSize: 12,
+    marginBottom: 15,
+     fontFamily: 'Lemon-Regular',
+    marginBottom: 40,
+  },
+      header1: {
+    paddingTop: 10,
+  },
+  backIcon: {
+    paddingBottom: 10,
+    top: 0,
+    marginTop: 20,
+  },
+  headerTitle: {
+    marginTop: -35,
+    
+    textAlign: 'center',
+    marginBottom: 25,
+    color: '#121212',
+    fontSize: 23,
+    fontWeight: 'bold',
+    alignSelf: 'center',
     fontFamily: 'Lemon-Regular',
   },
 });
