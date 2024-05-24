@@ -29,6 +29,10 @@ Copier le code
 npm install
 # ou
 yarn install
+
+pensez aussi à faire : npm install react-native-responsive-screen
+
+
 Lancement de l'application
 iOS
 Assurez-vous que vous avez installé les dépendances spécifiques à iOS :
