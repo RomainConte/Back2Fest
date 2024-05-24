@@ -1,14 +1,13 @@
+// Programme.js
 import React, { useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-
 const Programme = () => {
   const [selectedDay, setSelectedDay] = useState('J1');
   const navigation = useNavigation();
 
-  const [fontsLoaded] = useFonts({
+    const [fontsLoaded] = useFonts({
     'Lemon-Regular': require('../assets/fonts/Lemon-Regular.ttf'),
   });
 
@@ -111,13 +110,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5E5CC',
-    paddingHorizontal: wp('5%'),
+    paddingHorizontal: 20,
   },
   title: {
-    fontSize: wp('6%'),
+    fontSize: 23,
     fontWeight: 'bold',
-    marginTop: hp('6%'),
-    marginBottom: hp('2.5%'),
+    marginTop: 50,
+    marginBottom: 20,
     textAlign: 'center',
     color: '#121212',
     fontFamily: 'Lemon-Regular',
@@ -125,72 +124,75 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: hp('2.5%'),
+    marginBottom: 20,
   },
   dayButton: {
-    paddingVertical: hp('1.25%'),
-    paddingHorizontal: wp('4.5%'),
-    borderRadius: wp('2.5%'),
+    paddingVertical: 10,
+    paddingHorizontal: 18,
+    borderRadius: 10,
     backgroundColor: '#C15A5A',
   },
   selectedButton: {
     backgroundColor: '#E4B979',
   },
   dayButtonText: {
-    fontSize: wp('4%'),
+    fontSize: 15,
     fontFamily: 'Lemon-Regular',
     color: '#FAFAFA',
   },
-  artistsContainer: {},
+  artistsContainer: {
+  },
   artistCard: {
     flexDirection: 'row',
     backgroundColor: '#FAFAFA',
-    borderRadius: wp('2.5%'),
-    marginBottom: hp('2.5%'),
-    padding: wp('2.5%'),
+    borderRadius: 10,
+    marginBottom: 20,
+    padding: 10,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOpacity: 0.2,
-    shadowRadius: wp('2%'),
-    shadowOffset: { width: wp('0.5%'), height: wp('0.5%') },
+    shadowRadius: 8,
+    shadowOffset: { width: 2, height: 2 },
     elevation: 5,
   },
   timeContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: wp('2.5%'),
+    marginRight: 10,
   },
   timeText: {
-    fontSize: wp('3%'),
+    fontSize: 12,
     color: '#121212',
     fontFamily: 'Lemon-Regular',
   },
   verticalLine: {
-    height: hp('3%'),
-    width: wp('0.5%'),
+    height: 25,
+    width: 2,
     backgroundColor: '#E4B979',
-    marginVertical: hp('0.625%'),
+    marginVertical: 5,
   },
   artistImage: {
-    width: wp('17.5%'),
-    height: wp('17.5%'),
-    borderRadius: wp('2.5%'),
-    marginRight: wp('2.5%'),
+    width: 70,
+    height: 70,
+    borderRadius: 10,
+    marginRight: 10,
   },
   artistInfo: {
     flex: 1,
   },
   artistName: {
-    fontSize: wp('4.5%'),
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#121212',
     fontFamily: 'Lemon-Regular',
   },
   artistDetails: {
-    fontSize: wp('3%'),
+    fontSize: 12,
     color: '#555',
     fontFamily: 'Lemon-Regular',
   },
 });
 
 export default Programme;
+
+
