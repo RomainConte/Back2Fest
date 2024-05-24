@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const App = () => {
   const navigation = useNavigation();
@@ -54,13 +55,13 @@ const App = () => {
               {day.images.slice(0, 5).map((image, idx) => (
                 <TouchableOpacity
                   key={idx}
-                  style={[styles.imageWrapper, index === 1 && { width: 300, height: 300 }]}
+                  style={[styles.imageWrapper, index === 1 && styles.imageWrapperLarge]}
                   onPress={() => {
                     console.log('Clicked artist index:', image.index); // Log the artist index
                     navigation.navigate('artiste', { artistIndex: image.index });
                   }}
                 >
-                  <Image source={image.src} style={[styles.image, index === 1 && { width: '100%', height: '100%' }]} />
+                  <Image source={image.src} style={[styles.image, index === 1 && styles.imageLarge]} />
                   <Text style={styles.imagelabel}>{image.name}</Text>
                 </TouchableOpacity>
               ))}
@@ -74,41 +75,49 @@ const App = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 60,
+    paddingTop: hp('7.5%'),
     flex: 1,
     backgroundColor: '#F5E5CC',
   },
   title: {
-    fontSize: 24,
+    fontSize: wp('6%'),
     fontWeight: 'bold',
-    marginVertical: 20,
-    paddingLeft: 10,
+    marginVertical: hp('2.5%'),
+    paddingLeft: wp('2.5%'),
     fontFamily: 'Lemon-Regular',
   },
   dayContainer: {
-    marginBottom: 20,
+    marginBottom: hp('2.5%'),
   },
   dayTitle: {
-    fontSize: 18,
+    fontSize: wp('4.5%'),
     fontWeight: 'bold',
-    marginLeft: 22,
+    marginLeft: wp('5.5%'),
     fontFamily: 'Lemon-Regular',
   },
   imageContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    padding: 10,
+    padding: wp('2.5%'),
   },
   imageWrapper: {
-    width: 200,
-    height: 200,
-    borderRadius: 10,
+    width: wp('50%'),
+    height: wp('50%'),
+    borderRadius: wp('2.5%'),
     overflow: 'hidden',
-    margin: 5,
+    margin: wp('1.25%'),
     position: 'relative',
   },
+  imageWrapperLarge: {
+    width: wp('75%'),
+    height: wp('75%'),
+  },
   image: {
+    width: '100%',
+    height: '100%',
+  },
+  imageLarge: {
     width: '100%',
     height: '100%',
   },
@@ -117,45 +126,42 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    
   },
   profileWrapper: {
-    width: 50,
-    height: 50,
-    paddingTop: 14,
-    
+    width: wp('12.5%'),
+    height: wp('12.5%'),
+    paddingTop: hp('1.75%'),
     overflow: 'hidden',
-    margin: 15,
+    margin: wp('3.75%'),
     backgroundColor: '#F5E5CC',
   },
   profileImage: {
-    width: 40,
-    height: 28,
+    width: wp('10%'),
+    height: wp('7%'),
   },
   profileWrapper2: {
-    width: 160,
-    height: 60,
+    width: wp('40%'),
+    height: hp('7.5%'),
     overflow: 'hidden',
-    margin: 10,
+    margin: wp('2.5%'),
     backgroundColor: '#F5E5CC',
-    marginRight: '35%',
+    marginRight: wp('35%'),
   },
   profileImage2: {
-    width: 130,
-    height: 50,
+    width: wp('32.5%'),
+    height: hp('6.25%'),
   },
   imagelabel: {
     position: 'absolute',
-    bottom: 10,
-    right: 10,
+    bottom: hp('1.25%'),
+    right: wp('2.5%'),
     color: 'white',
-    padding: 5,
+    padding: wp('1.25%'),
     textAlign: 'right',
     fontFamily: 'Lemon-Regular',
     fontWeight: 'bold',
-    fontSize: 18,
-   
-    borderRadius: 5,
+    fontSize: wp('4.5%'),
+    borderRadius: wp('1.25%'),
   },
 });
 
