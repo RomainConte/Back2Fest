@@ -96,7 +96,7 @@ function Register({ navigation }) {
   return (
     <View style={responsiveStyles.container}>
       <Image source={require('../assets/logo noir sans fong.png')} style={{ width: 300, height: 128, marginBottom: 40 }} />
-      <Text style={responsiveStyles.title}>Crées-toi un compte</Text>
+      <Text style={responsiveStyles.title}>ENREGISTRE-TOI</Text>
       <View style={responsiveStyles.form}>
         <View style={responsiveStyles.inputWrapper}>
           <Text style={responsiveStyles.ssti}>Nom</Text>
@@ -150,7 +150,7 @@ function Register({ navigation }) {
           <Text style={responsiveStyles.forgotPassword}>En vous enregistrant, vous confirmez votre acceptation de nos conditions d’utilisation, de notre politique de confidentialité et des cookies</Text>
         </Pressable>
         <Pressable style={responsiveStyles.button} onPress={registerUser}>
-          <Text style={responsiveStyles.buttonText}>Créer mon compte</Text>
+          <Text style={responsiveStyles.buttonText}>CRÉER MON COMPTE</Text>
         </Pressable>
         <Text style={responsiveStyles.bottomText}>
           Déjà un compte ?{" "}
@@ -168,7 +168,7 @@ export default Register;
 const createResponsiveStyles = (width, height) => StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    paddingTop: 100,
     alignItems: "center",
     backgroundColor: "#FAF3DD",
     paddingHorizontal: width * 0.04,
@@ -214,19 +214,19 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     color: "#121212",
     marginBottom: height * 0.02,
     marginTop: height * -0.013,
-    marginRight: 10,
+    marginRight: 4,
     fontFamily: 'Lemon-Regular',
-    fontSize: 10,
+    fontSize: 9,
   },
   button: {
-    backgroundColor: "#C15A5A",
+    backgroundColor: "#E4B979",
     borderRadius: 25,
     paddingVertical: height * 0.012,
     alignItems: "center",
     marginVertical: height * 0.02,
     marginBottom: height * 0.04,
-    marginTop: height * 0.04,
-    width: "62%",
+    marginTop: height * 0.02,
+    width: "74%",
     alignSelf: "center",
   },
   buttonText: {
@@ -239,6 +239,7 @@ const createResponsiveStyles = (width, height) => StyleSheet.create({
     color: "#121212",
     textAlign: "center",
     fontFamily: 'Lemon-Regular',
+    fontSize: 13,
   },
   linkText: {
     color: "#D46A6A",

@@ -13,7 +13,7 @@ const Camping = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.header}>
+      <View style={styles.header1}>
         <Icon
           name="arrow-left"
           size={24}
@@ -21,7 +21,9 @@ const Camping = () => {
           style={styles.backIcon}
           onPress={() => navigation.goBack()}
         />
-        <Text style={styles.headerText}>Règles du Camping</Text>
+        <Text style={styles.headerTitle}>
+          règles du camping
+        </Text>
       </View>
       <Text style={styles.description}>
         Bienvenue dans notre havre de tranquillité en pleine nature! Afin que chacun puisse profiter pleinement de son séjour, veuillez prendre connaissance des règles suivantes:
@@ -51,7 +53,7 @@ const Camping = () => {
         - Assurez-vous de respecter les consignes de sécurité, notamment en matière de circulation des véhicules et d'accès aux zones dangereuses telles que les falaises ou les cours d'eau.
       </Text>
       <Text style={styles.subHeader}>Convivialité :</Text>
-      <Text style={styles.item}>
+      <Text style={styles.item1}>
         - Nous encourageons une atmosphère conviviale et respectueuse entre tous les campeurs. Soyez attentifs aux besoins des autres et prêts à offrir votre aide si nécessaire.
       </Text>
     </ScrollView>
@@ -61,39 +63,54 @@ const Camping = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    padding: 30,
-    backgroundColor: '#F9EFD1',
+    paddingHorizontal: 20,
+    backgroundColor: '#F5E5CC',
   },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
+
   backIcon: {
     padding: 10,
   },
-  headerText: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#E06B6B',
-    marginLeft: 10,
-    fontFamily: 'Lemon-Regular',
-  },
+ 
   description: {
-    fontSize: 18,
+    fontSize: 12,
     marginBottom: 25,
     fontFamily: 'Lemon-Regular',
   },
   subHeader: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
     marginTop: 20,
     fontFamily: 'Lemon-Regular',
   },
   item: {
-    fontSize: 18,
+    fontSize: 12,
     marginBottom: 15,
+    fontFamily: 'Lemon-Regular',
+    
+  },
+  item1: {
+    fontSize: 12,
+    marginBottom: 15,
+    fontFamily: 'Lemon-Regular',
+    marginBottom: 40,
+    
+  },
+   header1: {
+    paddingTop: 10,
+  },
+  backIcon: {
+    paddingBottom: 10,
+    top: 20,
+    marginTop: 20,
+  },
+  headerTitle: {
+    marginTop: -15,
+    marginBottom: 25,
+    color: '#121212',
+    fontSize: 23,
+    fontWeight: 'bold',
+    alignSelf: 'center',
     fontFamily: 'Lemon-Regular',
   },
 });

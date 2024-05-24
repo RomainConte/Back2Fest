@@ -12,7 +12,7 @@ const Acces = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.header}>
+      <View style={styles.header1}>
         <Icon
           name="arrow-left"
           size={24}
@@ -20,7 +20,9 @@ const Acces = () => {
           style={styles.backIcon}
           onPress={() => navigation.goBack()}
         />
-        <Text style={styles.headerText}>Accès</Text>
+        <Text style={styles.headerTitle}>
+          Accès
+        </Text>
       </View>
       <Text style={styles.description}>
         Bienvenue sur la page des informations d'accès à notre événement. Pour faciliter votre venue et garantir une expérience sans encombre, veuillez prendre connaissance des informations suivantes:
@@ -61,44 +63,48 @@ const Acces = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    padding: 30,
-    backgroundColor: '#F9EFD1',
+    paddingHorizontal: 20,
+    backgroundColor: '#F5E5CC',
   },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  backIcon: {
-    padding: 10,
-  },
-  headerText: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#E06B6B',
-    marginLeft: 10,
-    fontFamily: 'Lemon-Regular',
-  },
+
   description: {
-    fontSize: 18,
+    fontSize: 12,
     marginBottom: 25,
     fontFamily: 'Lemon-Regular',
   },
   subHeader: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
     marginTop: 20,
     fontFamily: 'Lemon-Regular',
   },
   item: {
-    fontSize: 18,
+    fontSize: 13,
     marginBottom: 15,
     fontFamily: 'Lemon-Regular',
   },
   footerText: {
-    fontSize: 16,
+    fontSize: 12,
     marginTop: 20,
+    fontFamily: 'Lemon-Regular',
+    marginBottom : 40,
+  },
+   header1: {
+    paddingTop: 10,
+  },
+  backIcon: {
+    paddingBottom: 10,
+    top: 20,
+    marginTop: 20,
+  },
+  headerTitle: {
+    marginTop: -15,
+    marginBottom: 25,
+    color: '#121212',
+    fontSize: 23,
+    fontWeight: 'bold',
+    alignSelf: 'center',
     fontFamily: 'Lemon-Regular',
   },
 });

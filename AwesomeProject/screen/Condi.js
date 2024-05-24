@@ -13,7 +13,7 @@ const TermsOfUse = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.header}>
+       <View style={styles.header1}>
         <Icon
           name="arrow-left"
           size={24}
@@ -21,7 +21,9 @@ const TermsOfUse = () => {
           style={styles.backIcon}
           onPress={() => navigation.goBack()}
         />
-        <Text style={styles.headerText}>Conditions d'utilisation</Text>
+        <Text style={styles.headerTitle}>
+          Conditions d'utilisation
+        </Text>
       </View>
       
       <Text style={styles.sectionTitle}>Acceptation des conditions</Text>
@@ -61,40 +63,43 @@ const TermsOfUse = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    padding: 30,
-    backgroundColor: '#F9EFD1',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-    fontFamily: 'Lemon-Regular',
-  },
-  backIcon: {
-    padding: 10,
-  },
-  headerText: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#E06B6B',
-    marginLeft: 10,
-    fontFamily: 'Lemon-Regular',
+    paddingHorizontal: 20,
+    backgroundColor: '#F5E5CC',
   },
   sectionTitle: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
     marginTop: 20,
+    color: '#C15A5A',
     fontFamily: 'Lemon-Regular',
   },
   paragraph: {
-    fontSize: 18,
+    fontSize: 12,
     marginBottom: 15,
     fontFamily: 'Lemon-Regular',
   },
   contactInfo: {
-    fontSize: 18,
+    fontSize: 12,
     marginTop: 15,
+    fontFamily: 'Lemon-Regular',
+    marginBottom: 40,
+  },
+     header1: {
+    paddingTop: 10,
+  },
+  backIcon: {
+    paddingBottom: 10,
+    top: 20,
+    marginTop: 20,
+  },
+  headerTitle: {
+    marginTop: -15,
+    marginBottom: 25,
+    color: '#121212',
+    fontSize: 23,
+    fontWeight: 'bold',
+    alignSelf: 'center',
     fontFamily: 'Lemon-Regular',
   },
 });

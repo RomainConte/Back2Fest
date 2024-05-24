@@ -22,7 +22,11 @@ const Start2 = () => {
         <View style={styles.paginationDot} />
         <View style={[styles.paginationDot, styles.activePaginationDot]} />
       </View>
+       <View style={styles.wave}>
+        <Image source={require('../assets/waverouge.png')} style={styles.image2} />
+        </View>
     </View>
+    
   );
 }
 
@@ -73,6 +77,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
+      marginBottom: -40,
+    paddingTop: 60,
   },
   paginationDot: {
     width: 10,
@@ -83,6 +89,14 @@ const styles = StyleSheet.create({
   },
   activePaginationDot: {
     backgroundColor: '#C15A5A',
+  },
+
+    wave: {
+    height: 108,
+    width: "100%",
+    position: 'absolute',
+    bottom: 0,
+   
   },
 });
 
